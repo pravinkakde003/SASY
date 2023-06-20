@@ -2,4 +2,10 @@
     <string name="app_name">SASY NonTag</string>
     <string name="app_heading">SASY NonTag Setting</string>
     <string name="appbar_scrolling_view_behavior">1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="bluetooth_not_supported">This device is not supported bluetooth</string>
+    <string name="permission_missing">App needs Bluetooth permission.</string>
+
 </resources>
