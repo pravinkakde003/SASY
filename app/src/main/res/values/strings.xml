@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SASY NonTag</string>
+    <string name="app_heading">SASY NonTag Setting</string>
+    <string name="appbar_scrolling_view_behavior">1</string>
+</resources>

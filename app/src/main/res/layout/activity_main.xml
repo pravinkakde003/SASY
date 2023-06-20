@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_overlay"
+        tools:layout_editor_absoluteX="24dp">
+
+
+        <TextView
+            android:id="@+id/textViewPair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Paired Device"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewDev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="235dp"
+            android:text="Available Device" />
+
+
+        <LinearLayout
+            android:id="@+id/linardevice"
+            android:layout_width="371dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/listdeviceshow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:scrollbarThumbVertical="@color/black_overlay"
+                tools:layout_editor_absoluteX="13dp"></ListView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linardevice1"
+            android:layout_width="371dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/listdevicesava"
+                android:layout_width="225dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="250dp"
+                android:scrollbarThumbVertical="@color/black_overlay"
+                tools:layout_editor_absoluteX="13dp"></ListView>
+
+            <LinearLayout
+                android:id="@+id/linarpost"
+                android:layout_width="371dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <Button
+                    android:id="@+id/BTNscan"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="220dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="SCAN" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linarhor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:id="@+id/linre2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="0.3in"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:inputType="number"
+                    android:text="10" />
+
+
+                <TextView
+                    android:id="@+id/txtreceived"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="" />
+
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="Send" />
+
+                <Button
+                    android:id="@+id/BTNsetrange"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="55dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="Set Range" />
+
+
+                <Button
+                    android:id="@+id/BTNSET"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="SET DB" />
+
+                <Button
+                    android:id="@+id/BTNTHR"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="SET RID" />
+
+
+                <Button
+                    android:id="@+id/BTNinfo"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="Sync RTC" />
+
+                <Button
+                    android:id="@+id/BtnDeviceinfo"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="Dev Info" />
+
+                <Button
+                    android:id="@+id/btnclose"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="Close" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/liner2a"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/BTNgetrange"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="110dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="Get Range" />
+
+                <Button
+                    android:id="@+id/BTNGET"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="Get DB" />
+
+
+                <Button
+                    android:id="@+id/BTNGETdt"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="Get Rid" />
+
+
+                <Button
+                    android:id="@+id/BTNGETTM"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="Get RTC" />
+
+                <Button
+                    android:id="@+id/BTNclear"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_button_border"
+                    android:text="Get Clear" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
