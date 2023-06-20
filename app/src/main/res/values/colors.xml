@@ -4,4 +4,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black_overlay">#66000000</color>
+
+    <color name="primary_color_variant">#FEFBE9</color>
+
+    <color name="normal">#39465B</color>
+    <color name="light">#639DC8</color>
 </resources>

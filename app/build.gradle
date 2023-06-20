@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.sasy.nontag"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -41,7 +41,7 @@ android {
 ext {
     appcompat_version = '1.6.1'
     material_version = '1.9.0'
-    constraintlayout_version = "2.1.4"
+    constraintlayout_version = '2.1.4'
 }
 
 dependencies {

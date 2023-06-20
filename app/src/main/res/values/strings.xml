@@ -3,9 +3,17 @@
     <string name="app_heading">SASY NonTag Setting</string>
     <string name="appbar_scrolling_view_behavior">1</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="confirm_pin_text">Confirm your pin</string>
 
     <string name="bluetooth_not_supported">This device is not supported bluetooth</string>
     <string name="permission_missing">App needs Bluetooth permission.</string>
+    <string name="welcome_text">Welcome!\nLet\'s get started</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="simplepinlock_request_pin">Enter PIN</string>
+    <string name="simplepinlock_enter_pin1">Enter new PIN</string>
+    <string name="simplepinlock_enter_pin2">Re enter PIN</string>
+    <string name="simplepinlock_invalid_pin">Invalid PIN. Try again</string>
+    <string name="simplepinlock_pin_mismatch">PIN mismatch. Try again</string>
 
 </resources>

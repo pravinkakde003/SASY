@@ -1,11 +1,9 @@
 package com.sasy.nontag.utils
 
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -13,7 +11,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import pub.devrel.easypermissions.EasyPermissions
 
 inline fun <reified T : Any> T.className(): String = this::class.java.simpleName
 
@@ -111,17 +108,10 @@ fun Activity.showKeyBoard(editable: EditText) {
     )
 }
 
-fun Activity.hasBluetoothPermissions() =
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-        EasyPermissions.hasPermissions(
-            this,
-            Manifest.permission.BLUETOOTH_SCAN,
-            Manifest.permission.BLUETOOTH_CONNECT
-        )
-    } else {
-        EasyPermissions.hasPermissions(
-            this,
-            Manifest.permission.BLUETOOTH_SCAN,
-            Manifest.permission.BLUETOOTH_CONNECT
-        )
-    }
+fun dp2px(context: Context, dp: Float): Float {
+    return dp * context.resources.displayMetrics.density
+}
+
+fun px2dp(context: Context, px: Float): Float {
+    return px / context.resources.displayMetrics.density
+}
