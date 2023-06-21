@@ -8,12 +8,15 @@
     <string name="bluetooth_not_supported">This device is not supported bluetooth</string>
     <string name="permission_missing">App needs Bluetooth permission.</string>
     <string name="welcome_text">Welcome!\nLet\'s get started</string>
-
+    <string name="searching_devices">Searching for devices</string>
+    <string name="searching_devices_description">Make sure your phone\'s bluetooth device is unlocked</string>
     <string name="cancel">Cancel</string>
+    <string name="view_details">View details</string>
     <string name="simplepinlock_request_pin">Enter PIN</string>
     <string name="simplepinlock_enter_pin1">Enter new PIN</string>
     <string name="simplepinlock_enter_pin2">Re enter PIN</string>
     <string name="simplepinlock_invalid_pin">Invalid PIN. Try again</string>
     <string name="simplepinlock_pin_mismatch">PIN mismatch. Try again</string>
+    <string name="history">History</string>
 
 </resources>

@@ -32,7 +32,7 @@
         android:theme="@style/Theme.SASYNonTag"
         tools:targetApi="33">
         <activity
-            android:name=".ui.AppPinCodeActivity"
+            android:name=".ui.DashboardActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <intent-filter>

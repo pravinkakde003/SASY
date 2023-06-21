@@ -42,12 +42,14 @@ ext {
     appcompat_version = '1.6.1'
     material_version = '1.9.0'
     constraintlayout_version = '2.1.4'
+    gson_version = '2.9.1'
 }
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:$appcompat_version")
-    implementation("com.google.android.material:material:$material_version")
-    implementation("androidx.constraintlayout:constraintlayout:$constraintlayout_version")
+    implementation "androidx.appcompat:appcompat:$appcompat_version",
+            "com.google.android.material:material:$material_version",
+            "androidx.constraintlayout:constraintlayout:$constraintlayout_version",
+            "com.google.code.gson:gson:$gson_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
