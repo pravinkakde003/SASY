@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.sasy.nontag.R
 import com.sasy.nontag.utils.dp2px
-import com.sasy.nontag.utils.launchActivity
+import com.sasy.nontag.utils.launchAndClearStackActivity
 import com.sasy.nontag.utils.pinlock.PinButtonAdapter
 import com.sasy.nontag.utils.showToast
 import kotlinx.android.synthetic.main.activity_app_pincode.*
@@ -71,8 +71,8 @@ class AppPinCodeActivity : AppCompatActivity() {
     }
 
     private fun onPinInputFinished() {
-        showToast("Finished : " + getPin())
-        launchActivity<DashboardActivity> {}
+        showToast("Pin : " + getPin())
+        launchAndClearStackActivity<DashboardActivity> {}
     }
 
     /*

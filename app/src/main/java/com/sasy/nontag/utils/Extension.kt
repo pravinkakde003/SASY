@@ -33,6 +33,7 @@ inline fun <reified T : Any> Activity.launchAndClearStackActivity(
     intent.init()
     intent.clearStack()
     startActivity(intent, options)
+    overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
 }
 
 inline fun <reified T : Any> newIntent(context: Context): Intent = Intent(context, T::class.java)
