@@ -38,45 +38,5 @@
     "device_id": 8,
     "deviceName": "Laptop-4",
     "imageIcon": "ic_baseline_laptop_24"
-  },
-  {
-    "device_id": 1,
-    "deviceName": "Pixel 6a",
-    "imageIcon": "ic_baseline_phone_android_24"
-  },
-  {
-    "device_id": 2,
-    "deviceName": "Samsung A23",
-    "imageIcon": "ic_baseline_phone_android_24"
-  },
-  {
-    "device_id": 3,
-    "deviceName": "Laptop-1",
-    "imageIcon": "ic_baseline_laptop_24"
-  },
-  {
-    "device_id": 4,
-    "deviceName": "OnePlus 6",
-    "imageIcon": "ic_baseline_phone_android_24"
-  },
-  {
-    "device_id": 5,
-    "deviceName": "Laptop-2",
-    "imageIcon": "ic_baseline_laptop_24"
-  },
-  {
-    "device_id": 6,
-    "deviceName": "Laptop-3",
-    "imageIcon": "ic_baseline_laptop_24"
-  },
-  {
-    "device_id": 7,
-    "deviceName": "OnePlus Nord",
-    "imageIcon": "ic_baseline_phone_android_24"
-  },
-  {
-    "device_id": 8,
-    "deviceName": "Laptop-4",
-    "imageIcon": "ic_baseline_laptop_24"
   }
 ]
