@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.sasy.nontag.R
 
 inline fun <reified T : Any> T.className(): String = this::class.java.simpleName
 
@@ -21,6 +22,7 @@ inline fun <reified T : Any> Activity.launchActivity(
     val intent = newIntent<T>(this)
     intent.init()
     startActivity(intent, options)
+    overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
 }
 
 inline fun <reified T : Any> Activity.launchAndClearStackActivity(
