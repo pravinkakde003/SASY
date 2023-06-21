@@ -18,5 +18,6 @@
     <string name="simplepinlock_invalid_pin">Invalid PIN. Try again</string>
     <string name="simplepinlock_pin_mismatch">PIN mismatch. Try again</string>
     <string name="history">History</string>
-
+    <string name="back">Back</string>
+    <string name="ranges">Range</string>
 </resources>

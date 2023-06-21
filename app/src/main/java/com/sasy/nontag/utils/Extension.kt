@@ -10,6 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.sasy.nontag.R
 
@@ -117,4 +118,17 @@ fun dp2px(context: Context, dp: Float): Float {
 
 fun px2dp(context: Context, px: Float): Float {
     return px / context.resources.displayMetrics.density
+}
+
+fun AppCompatActivity.replaceFragment(
+    fragment: Fragment,
+    addToBackStack: Boolean = false,
+    container: Int = R.id.containerFragment
+) {
+    val transaction = supportFragmentManager.beginTransaction()
+    if (addToBackStack) {
+        transaction.replace(container, fragment).addToBackStack(fragment.tag).commit()
+    } else {
+        transaction.replace(container, fragment).commit()
+    }
 }

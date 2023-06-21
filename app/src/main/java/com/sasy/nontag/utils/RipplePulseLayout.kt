@@ -184,9 +184,9 @@ class RipplePulseRelativeLayout : RelativeLayout {
     }
 
     init {
-        _rippleColor = ContextCompat.getColor(context, R.color.com_chattylabs_component_color_green)
+        _rippleColor = ContextCompat.getColor(context, R.color.green)
         _pulseDuration = resources.getInteger(android.R.integer.config_longAnimTime)
-        _rippleStrokeWidth = resources.getDimension(R.dimen.com_chattylabs_component_dimen_stroke)
+        _rippleStrokeWidth = resources.getDimension(R.dimen.ripple_stroke)
         // This option is needed to get onDraw called, otherwise we would need to re-measure the bounds of this View
         setWillNotDraw(false)
     }

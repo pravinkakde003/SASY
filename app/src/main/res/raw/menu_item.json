@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Range"
+  },
+  {
+    "id": 2,
+    "name": "Database"
+  },
+  {
+    "id": 3,
+    "name": "Dev Info"
+  },
+  {
+    "id": 4,
+    "name": "Sync RT"
+  },
+  {
+    "id": 5,
+    "name": "Rid"
+  },
+  {
+    "id": 6,
+    "name": "Blesig"
+  }
+]
