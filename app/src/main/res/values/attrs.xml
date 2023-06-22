@@ -15,4 +15,15 @@
         <attr name="pulse_layout_RippleEndRadiusPercent" format="float" />
         <attr name="pulse_layout_PulseInterpolator" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="IncreaseDecreaseButton">
+        <attr name="initNumber" format="integer" />
+        <attr name="minNumber" format="integer" />
+        <attr name="maxNumber" format="integer" />
+        <attr name="activeIconColor" format="color" />
+        <attr name="inactiveIconColor" format="color" />
+        <attr name="textSizeNumber" format="dimension" />
+        <attr name="iconSize" format="dimension" />
+    </declare-styleable>
+
 </resources>

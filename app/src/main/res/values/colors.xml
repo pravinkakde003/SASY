@@ -10,4 +10,6 @@
     <color name="normal">#39465B</color>
     <color name="light">#639DC8</color>
     <color name="green">#4caf50</color>
+    <color name="increase_decrease_lib_active">#FF7E2E</color>
+    <color name="increase_decrease_lib_inactive">#66000000</color>
 </resources>
