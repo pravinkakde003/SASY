@@ -22,4 +22,7 @@
     <string name="ranges">Range</string>
     <string name="set_range">Set Range</string>
     <string name="get_range">Get Range</string>
+    <string name="long_text">Long</string>
+    <string name="short_text">Short</string>
+    <string name="set_blesig">Set Blesig</string>
 </resources>

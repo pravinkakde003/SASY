@@ -4,13 +4,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Blesig"
+        android:paddingHorizontal="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shortTextView"
+            style="@style/AppTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/short_text"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/longTextView"
+            style="@style/AppTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/long_text"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.sasy.nontag.utils.seekbar.BubbleSeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:bsb_bubble_color="@color/app_primary_color"
+            app:bsb_bubble_text_color="@color/app_primary_color"
+            app:bsb_bubble_text_size="16sp"
+            app:bsb_max="10"
+            app:bsb_min="1"
+            app:bsb_second_track_color="@color/black"
+            app:bsb_section_text_position="below_section_mark"
+            app:bsb_seek_by_section="true"
+            app:bsb_show_section_mark="true"
+            app:bsb_show_thumb_text="true"
+            app:bsb_thumb_color="@color/app_primary_color"
+            app:bsb_thumb_text_size="16sp"
+            app:bsb_track_size="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shortTextView" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_view_details"
+            style="@style/PrimaryColoredButton"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginVertical="16dp"
+            android:text="@string/set_blesig"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekBar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
