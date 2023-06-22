@@ -32,7 +32,7 @@
         android:theme="@style/Theme.SASYNonTag"
         tools:targetApi="33">
         <activity
-            android:name=".ui.DetailActivity"
+            android:name=".ui.AppPinCodeActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme">
@@ -49,6 +49,12 @@
 
         <activity
             android:name=".ui.DashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenTheme" />
+
+
+        <activity
+            android:name=".ui.DetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme" />
     </application>

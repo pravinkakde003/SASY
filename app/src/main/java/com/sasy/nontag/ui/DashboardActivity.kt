@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sasy.nontag.R
 import com.sasy.nontag.ui.adapter.DeviceHistoryAdapter
 import com.sasy.nontag.utils.AppUtils
+import com.sasy.nontag.utils.launchActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 
@@ -19,6 +20,9 @@ class DashboardActivity : AppCompatActivity() {
         pulseLayout.startPulse()
         setMenuRecyclerView()
 
+        button_view_details.setOnClickListener {
+            launchActivity<DetailActivity> { }
+        }
     }
 
     private fun setMenuRecyclerView() {

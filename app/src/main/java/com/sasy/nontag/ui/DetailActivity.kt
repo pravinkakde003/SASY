@@ -36,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
         recyclerviewDetails.layoutManager = LinearLayoutManager(this)
         recyclerviewDetails.setHasFixedSize(true)
         setToolbarTitle(resources.getString(R.string.ranges))
-        replaceFragment(BlesigFragment())
+        replaceFragment(RangesFragment())
         val mAdapter = MenuAdapter(this, menuList) { _, item ->
             setToolbarTitle(item.name)
             when (item.id) {
