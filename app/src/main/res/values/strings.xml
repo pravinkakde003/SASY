@@ -25,4 +25,14 @@
     <string name="long_text">Long</string>
     <string name="short_text">Short</string>
     <string name="set_blesig">Set Blesig</string>
+
+    <string name="error">Error</string>
+    <string name="information">Information</string>
+    <string name="ok">OK</string>
+    <string name="accept">Accept</string>
+    <string name="no_bluetooth_support">This device does not support bluetooth</string>
+    <string name="required_permissions">Required permissions</string>
+    <string name="permission_missing_31">App needs Nearby devices permission to find and connect to devices via Bluetooth. You can turn it off when not in use.</string>
+    <string name="turn_on_bluetooth">Turn on bluetooth</string>
+    <string name="scan">Scan</string>
 </resources>
