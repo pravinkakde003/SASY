@@ -43,6 +43,9 @@ class BluetoothHelper(private val context: Context, private val listener: Blueto
         context.unregisterReceiver(mBluetoothStateChangeReceiver)
     }
 
+    fun getBluetoothAdapter(): BluetoothAdapter {
+        return mBluetoothAdapter
+    }
 
     private val mBluetoothStateChangeReceiver by lazy {
         object : BluetoothStateChangeReceiver() {

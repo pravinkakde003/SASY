@@ -85,72 +85,45 @@
             </com.sasy.nontag.utils.RipplePulseRelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/dataFoundLayout"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/paired_with_label"
+            style="@style/AppTextViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center_horizontal"
+            android:text="Paired With Laptop"
+            android:textColor="@color/black"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pulseLayoutCover">
+            app:layout_constraintTop_toBottomOf="@id/pulseLayoutCover" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/paired_with_label"
-                style="@style/AppTextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:gravity="center_horizontal"
-                android:text="Paired With Laptop"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_view_details"
+            style="@style/PrimaryColoredButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="72dp"
+            android:layout_marginVertical="8dp"
+            android:text="@string/view_details"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/paired_with_label" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_view_details"
-                style="@style/PrimaryColoredButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="72dp"
-                android:layout_marginVertical="8dp"
-                android:text="@string/view_details"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/paired_with_label" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/recyclerview_label"
-                style="@style/TitleTextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:gravity="start"
-                android:text="@string/history"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_view_details" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_history"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="16dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recyclerview_label" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_all_devices"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_view_details" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

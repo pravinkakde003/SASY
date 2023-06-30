@@ -17,7 +17,7 @@
     <string name="simplepinlock_enter_pin2">Re enter PIN</string>
     <string name="simplepinlock_invalid_pin">Invalid PIN. Try again</string>
     <string name="simplepinlock_pin_mismatch">PIN mismatch. Try again</string>
-    <string name="history">History</string>
+    <string name="already_paired">Already paired</string>
     <string name="back">Back</string>
     <string name="ranges">Range</string>
     <string name="set_range">Set Range</string>

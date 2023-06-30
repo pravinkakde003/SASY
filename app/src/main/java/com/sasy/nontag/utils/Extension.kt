@@ -201,3 +201,7 @@ val Context.permissionMissing: String
     } else {
         getString(R.string.permission_missing_31)
     }
+
+fun Context.hasPermissions() = Constants.REQUIRED_PERMISSIONS.all {
+    ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
+}
