@@ -40,6 +40,18 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
         checkPermissions()
     }
 
+    private fun setonClickListeners() {
+        buttonTurnOnBluetooth.setOnClickListener {
+            checkBluetoothSupported()
+        }
+        button_view_details.setOnClickListener {
+            launchActivity<DetailActivity> { }
+        }
+        buttonInitiateScan.setOnClickListener {
+
+        }
+    }
+
     private fun checkPermissions() {
         if (hasPermissions()) {
             initiateApplicationFlow()
@@ -48,6 +60,8 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
                 requestMultiplePermissions.launch(
                     Constants.REQUIRED_PERMISSIONS
                 )
+            } else {
+                initiateApplicationFlow()
             }
         }
     }
@@ -100,42 +114,41 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
         }
     }
 
-    private fun setonClickListeners() {
-        buttonTurnOnBluetooth.setOnClickListener {
-            checkBluetoothSupported()
-        }
-        button_view_details.setOnClickListener {
-            launchActivity<DetailActivity> { }
-        }
-        buttonInitiateScan.setOnClickListener {
 
+    private fun getPairedDeviceList() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.BLUETOOTH_CONNECT
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                setPairedRecyclerview()
+            }
+        } else {
+            setPairedRecyclerview()
         }
     }
 
-    private fun getPairedDeviceList() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.BLUETOOTH_CONNECT
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            val alreadyPairedDeviceList = mutableListOf<ConnectedHistory>()
-            val pairedDevices: Set<BluetoothDevice>? =
-                bluetoothHelper.getBluetoothAdapter().bondedDevices
-            pairedDevices?.forEach { device ->
-                val deviceName = device.name
-                val deviceHardwareAddress = device.address
-                val deviceType = device.bluetoothClass.deviceClass
-                val drawable: Int =
-                    BluetoothDeviceMap().getDrawable(deviceType)
-                alreadyPairedDeviceList.add(
-                    ConnectedHistory(
-                        drawable.toString(),
-                        deviceName,
-                        deviceHardwareAddress
-                    )
+    private fun setPairedRecyclerview() {
+        val alreadyPairedDeviceList = mutableListOf<ConnectedHistory>()
+        val pairedDevices: Set<BluetoothDevice>? =
+            bluetoothHelper.getBluetoothAdapter().bondedDevices
+        pairedDevices?.forEach { device ->
+            val deviceName = device.name
+            val deviceHardwareAddress = device.address
+            val deviceType = device.bluetoothClass.deviceClass
+            val drawable: Int =
+                BluetoothDeviceMap().getDrawable(deviceType)
+            alreadyPairedDeviceList.add(
+                ConnectedHistory(
+                    drawable.toString(),
+                    deviceName,
+                    deviceHardwareAddress
                 )
-            }
+            )
+        }
 
+        if (alreadyPairedDeviceList.isNotEmpty()) {
             dashboardViewModel.totalDeviceList.add(
                 DeviceListDataModel("Already paired", alreadyPairedDeviceList)
             )
@@ -148,6 +161,8 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
             recyclerview_all_devices.layoutManager = LinearLayoutManager(this)
             recyclerview_all_devices.setHasFixedSize(true)
             recyclerview_all_devices.show()
+        } else {
+            showToast("No paired device found")
         }
     }
 
