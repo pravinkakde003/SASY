@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModel
 import com.sasy.nontag.model.DeviceListDataModel
 
 class DashboardViewModel : ViewModel() {
-    var totalDeviceList: ArrayList<DeviceListDataModel> = ArrayList()
     val isScanButtonShown = MutableLiveData(false)
+
+    val alreadyPairedDeviceList = ArrayList<DeviceListDataModel>()
+
+    val scannedDeviceList = ArrayList<DeviceListDataModel>()
 }

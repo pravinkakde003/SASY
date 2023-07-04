@@ -35,4 +35,11 @@
     <string name="permission_missing_31">App needs Nearby devices permission to find and connect to devices via Bluetooth. You can turn it off when not in use.</string>
     <string name="turn_on_bluetooth">Turn on bluetooth</string>
     <string name="scan">Scan</string>
+    <string name="avaialbe_device_title">Available</string>
+    <string name="bluetooth_is_off">Bluetooth is off</string>
+    <string name="please_turn_on_bluetooth">Please turn on your phones bluetooth.</string>
+    <string name="scan_and_connect"><![CDATA[Scan & Connect]]></string>
+    <string name="bluetooth_state_on">Bluetooth State: On</string>
+    <string name="no_scan_device_found">No available device found</string>
+    <string name="no_paired_device_found">No paired device found</string>
 </resources>

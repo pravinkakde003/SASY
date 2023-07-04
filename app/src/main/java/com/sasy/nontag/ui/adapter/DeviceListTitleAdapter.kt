@@ -11,12 +11,12 @@ import com.sasy.nontag.R
 import com.sasy.nontag.model.ConnectedHistory
 import com.sasy.nontag.model.DeviceListDataModel
 
-class VendorMenuTitleAdapter(
+class DeviceListTitleAdapter(
     private val context: Context,
-    private val mList: List<DeviceListDataModel>,
+    private val mList: ArrayList<DeviceListDataModel>,
     private val onClickListener: (View, ConnectedHistory) -> Unit
 ) :
-    RecyclerView.Adapter<VendorMenuTitleAdapter.ViewHolder>() {
+    RecyclerView.Adapter<DeviceListTitleAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.title_item_layout, parent, false)

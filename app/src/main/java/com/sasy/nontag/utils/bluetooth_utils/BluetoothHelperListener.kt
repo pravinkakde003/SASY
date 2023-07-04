@@ -1,10 +1,7 @@
-package c.tlgbltcn.library
+package com.sasy.nontag.utils.bluetooth_utils
 
 import android.bluetooth.BluetoothDevice
 
-/**
- * Created by tolga bolatcan on 25.01.2019
- */
 interface BluetoothHelperListener {
 
     fun onStartDiscovery()
@@ -15,5 +12,18 @@ interface BluetoothHelperListener {
 
     fun onDisabledBluetooh()
 
-    fun getBluetoothDeviceList(device: BluetoothDevice?)
+    /**
+     * You can detect nearby devices with this listener.
+     */
+    interface onDetectNearbyDeviceListener {
+        fun onDeviceDetected(device: BluetoothDevice?)
+    }
+
+
+    /**
+     * You can get bluetooth discovery started or finished with this listener.
+     */
+    interface onDiscoveryStateChangedListener {
+        fun onDiscoveryStateChanged(state: Int)
+    }
 }
