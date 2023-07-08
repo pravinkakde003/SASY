@@ -5,24 +5,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.sasy.nontag.R
+import com.sasy.nontag.databinding.FragmentBlesigBinding
 import com.sasy.nontag.utils.seekbar.BubbleSeekBar
-import com.sasy.nontag.utils.seekbar.BubbleSeekBar.CustomSectionTextArray
 import com.sasy.nontag.utils.showToast
-import kotlinx.android.synthetic.main.fragment_blesig.*
 
 
 class BlesigFragment : Fragment() {
+    private lateinit var binding: FragmentBlesigBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = FragmentBlesigBinding.inflate(layoutInflater)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_blesig, container, false)
+    ): View {
+        binding = FragmentBlesigBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        seekBar.setCustomSectionTextArray { _, array ->
+        binding.seekBar.setCustomSectionTextArray { _, array ->
             array.clear()
             array.put(1, "AC")
             array.put(2, "AB")
@@ -51,30 +57,31 @@ class BlesigFragment : Fragment() {
 //            .sectionTextPosition(BubbleSeekBar.TextPosition.BELOW_SECTION_MARK)
 //            .build()
 
-        seekBar.onProgressChangedListener = object : BubbleSeekBar.OnProgressChangedListenerAdapter() {
-            override fun onProgressChanged(
-                bubbleSeekBar: BubbleSeekBar,
-                progress: Int,
-                progressFloat: Float,
-                fromUser: Boolean
-            ) {
-            }
+        binding.seekBar.onProgressChangedListener =
+            object : BubbleSeekBar.OnProgressChangedListenerAdapter() {
+                override fun onProgressChanged(
+                    bubbleSeekBar: BubbleSeekBar,
+                    progress: Int,
+                    progressFloat: Float,
+                    fromUser: Boolean
+                ) {
+                }
 
-            override fun getProgressOnActionUp(
-                bubbleSeekBar: BubbleSeekBar,
-                progress: Int,
-                progressFloat: Float
-            ) {
-            }
+                override fun getProgressOnActionUp(
+                    bubbleSeekBar: BubbleSeekBar,
+                    progress: Int,
+                    progressFloat: Float
+                ) {
+                }
 
-            override fun getProgressOnFinally(
-                bubbleSeekBar: BubbleSeekBar,
-                progress: Int,
-                progressFloat: Float,
-                fromUser: Boolean
-            ) {
-                showToast("" + progress + " : " + progressFloat)
+                override fun getProgressOnFinally(
+                    bubbleSeekBar: BubbleSeekBar,
+                    progress: Int,
+                    progressFloat: Float,
+                    fromUser: Boolean
+                ) {
+                    showToast("" + progress + " : " + progressFloat)
+                }
             }
-        }
     }
 }

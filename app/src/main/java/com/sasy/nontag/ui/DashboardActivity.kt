@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sasy.nontag.R
+import com.sasy.nontag.databinding.ActivityDashboardBinding
 import com.sasy.nontag.model.ConnectedHistory
 import com.sasy.nontag.model.DeviceListDataModel
 import com.sasy.nontag.ui.adapter.DeviceListTitleAdapter
@@ -24,11 +25,9 @@ import com.sasy.nontag.utils.*
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothDeviceMap
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothHelper
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothHelperListener
-import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.layout_not_bluetooth.*
-
 
 class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
+    private lateinit var binding: ActivityDashboardBinding
     private lateinit var bluetoothHelper: BluetoothHelper
     private var requestedEnable = false
     private val dashboardViewModel: DashboardViewModel by viewModels()
@@ -36,19 +35,20 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         bluetoothHelper = BluetoothHelper(this@DashboardActivity, this).create()
         checkPermissions()
     }
 
     private fun setonClickListeners() {
-        buttonTurnOnBluetooth.setOnClickListener {
+        binding.layoutNoBluetooth.buttonTurnOnBluetooth.setOnClickListener {
             checkBluetoothSupported()
         }
-        button_view_details.setOnClickListener {
+        binding.buttonViewDetails.setOnClickListener {
             launchActivity<DetailActivity> { }
         }
-        buttonInitiateScan.setOnClickListener {
+        binding.layoutNoBluetooth.buttonInitiateScan.setOnClickListener {
             bluetoothHelper.startDetectNearbyDevices()
         }
     }
@@ -99,29 +99,29 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
 
     private fun setupStatusText() {
         if (!bluetoothHelper.isBluetoothEnabled()) {
-            connecting_status_label.text = getString(R.string.bluetooth_is_off)
-            connecting_status_description.text = getString(R.string.please_turn_on_bluetooth)
-            imageViewBluetoothState.setImageDrawable(
+            binding.connectingStatusLabel.text = getString(R.string.bluetooth_is_off)
+            binding.connectingStatusDescription.text = getString(R.string.please_turn_on_bluetooth)
+            binding.layoutNoBluetooth.imageViewBluetoothState.setImageDrawable(
                 ContextCompat.getDrawable(
                     this,
                     R.drawable.ic_baseline_bluetooth_disabled_24
                 )
             )
-            imageViewBluetoothState.setTint(R.color.black_overlay)
-            buttonTurnOnBluetooth.show()
-            buttonInitiateScan.hide()
+            binding.layoutNoBluetooth.imageViewBluetoothState.setTint(R.color.black_overlay)
+            binding.layoutNoBluetooth.buttonTurnOnBluetooth.show()
+            binding.layoutNoBluetooth.buttonInitiateScan.hide()
         } else {
-            connecting_status_label.text = getString(R.string.scan_and_connect)
-            connecting_status_description.text = getString(R.string.bluetooth_state_on)
-            imageViewBluetoothState.setImageDrawable(
+            binding.connectingStatusLabel.text = getString(R.string.scan_and_connect)
+            binding.connectingStatusDescription.text = getString(R.string.bluetooth_state_on)
+            binding.layoutNoBluetooth.imageViewBluetoothState.setImageDrawable(
                 ContextCompat.getDrawable(
                     this,
                     R.drawable.ic_baseline_bluetooth_24
                 )
             )
-            imageViewBluetoothState.setTint(R.color.app_primary_color)
-            buttonTurnOnBluetooth.hide()
-            buttonInitiateScan.show()
+            binding.layoutNoBluetooth.imageViewBluetoothState.setTint(R.color.app_primary_color)
+            binding.layoutNoBluetooth.buttonTurnOnBluetooth.hide()
+            binding.layoutNoBluetooth.buttonInitiateScan.show()
             getPairedDeviceList()
         }
     }
@@ -167,16 +167,18 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
                     alreadyPairedDeviceList
                 )
             )
-            recyclerviewAlreadyPaired.layoutManager = LinearLayoutManager(this)
-            recyclerviewAlreadyPaired.setHasFixedSize(true)
+            binding.recyclerviewAlreadyPaired.layoutManager = LinearLayoutManager(this)
+            binding.recyclerviewAlreadyPaired.setHasFixedSize(true)
             val pairedListAdapter = DeviceListTitleAdapter(
                 this,
                 dashboardViewModel.alreadyPairedDeviceList
             ) { _, item ->
-                showToast(item.deviceName)
+                dashboardViewModel.selectedDeviceName.value = item.deviceName
+                dashboardViewModel.selectedDeviceAddress.value = item.device_id
+                launchActivity<DetailActivity> { }
             }
-            recyclerviewAlreadyPaired.adapter = pairedListAdapter
-            recyclerviewAlreadyPaired.show()
+            binding.recyclerviewAlreadyPaired.adapter = pairedListAdapter
+            binding.recyclerviewAlreadyPaired.show()
         } else {
             showToast(getString(R.string.no_paired_device_found))
         }
@@ -214,17 +216,17 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
     ) {
         if (it.resultCode == Activity.RESULT_OK) {
             requestedEnable = false
-            connecting_status_label.text = getString(R.string.scan_and_connect)
-            connecting_status_description.text = getString(R.string.bluetooth_state_on)
-            imageViewBluetoothState.setImageDrawable(
+            binding.connectingStatusLabel.text = getString(R.string.scan_and_connect)
+            binding.connectingStatusDescription.text = getString(R.string.bluetooth_state_on)
+            binding.layoutNoBluetooth.imageViewBluetoothState.setImageDrawable(
                 ContextCompat.getDrawable(
                     this,
                     R.drawable.ic_baseline_bluetooth_24
                 )
             )
-            imageViewBluetoothState.setTint(R.color.app_primary_color)
-            buttonTurnOnBluetooth.hide()
-            buttonInitiateScan.show()
+            binding.layoutNoBluetooth.imageViewBluetoothState.setTint(R.color.app_primary_color)
+            binding.layoutNoBluetooth.buttonTurnOnBluetooth.hide()
+            binding.layoutNoBluetooth.buttonInitiateScan.show()
             getPairedDeviceList()
         } else {
             showToast(permissionMissing)
@@ -233,18 +235,18 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
 
     override fun onStartDiscovery() {
         Log.e("TAGG", "onStartDiscovery")
-        imageViewBluetoothState.hide()
-        buttonInitiateScan.hide()
-        pulseLayout.show()
-        pulseLayout.startPulse()
+        binding.layoutNoBluetooth.imageViewBluetoothState.hide()
+        binding.layoutNoBluetooth.buttonInitiateScan.hide()
+        binding.pulseLayout.show()
+        binding.pulseLayout.startPulse()
     }
 
     @SuppressLint("MissingPermission")
     override fun onFinishDiscovery() {
-        pulseLayout.stopPulse()
-        pulseLayout.hide()
-        imageViewBluetoothState.show()
-        buttonInitiateScan.show()
+        binding.pulseLayout.stopPulse()
+        binding.pulseLayout.hide()
+        binding.layoutNoBluetooth.imageViewBluetoothState.show()
+        binding.layoutNoBluetooth.buttonInitiateScan.show()
         Log.e("TAGG", "onFinishDiscovery")
         val newScannedDeviceList = mutableListOf<ConnectedHistory>()
 
@@ -270,16 +272,16 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
                     newScannedDeviceList
                 )
             )
-            recyclerviewScannedDevices.layoutManager = LinearLayoutManager(this)
-            recyclerviewScannedDevices.setHasFixedSize(true)
+            binding.recyclerviewScannedDevices.layoutManager = LinearLayoutManager(this)
+            binding.recyclerviewScannedDevices.setHasFixedSize(true)
             val scannedDeviceListAdapter = DeviceListTitleAdapter(
                 this,
                 dashboardViewModel.scannedDeviceList
             ) { _, item ->
                 showToast(item.deviceName)
             }
-            recyclerviewScannedDevices.adapter = scannedDeviceListAdapter
-            recyclerviewScannedDevices.show()
+            binding.recyclerviewScannedDevices.adapter = scannedDeviceListAdapter
+            binding.recyclerviewScannedDevices.show()
         } else {
             showToast(getString(R.string.no_scan_device_found))
         }

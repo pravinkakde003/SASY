@@ -4,37 +4,38 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sasy.nontag.R
+import com.sasy.nontag.databinding.ActivityDetailsBinding
 import com.sasy.nontag.ui.adapter.MenuAdapter
 import com.sasy.nontag.ui.fragments.BlesigFragment
 import com.sasy.nontag.ui.fragments.RangesFragment
 import com.sasy.nontag.utils.AppUtils
 import com.sasy.nontag.utils.replaceFragment
-import kotlinx.android.synthetic.main.activity_details.*
-import kotlinx.android.synthetic.main.toolbar_layout.view.*
 
 class DetailActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_details)
+        binding = ActivityDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setMenuRecyclerView()
         setupToolbar()
     }
 
     private fun setupToolbar() {
-        toolbar.backArrowImage.setOnClickListener {
+        binding.toolbar.backArrowImage.setOnClickListener {
             onBackPressed()
         }
     }
 
     private fun setToolbarTitle(toolbarTitle: String) {
-        toolbar.txtDashboardTitle.text = toolbarTitle
+        binding.toolbar.txtDashboardTitle.text = toolbarTitle
     }
 
     private fun setMenuRecyclerView() {
         val menuList =
             AppUtils.getMenuList(AppUtils.getArrayListFromJson(this, R.raw.menu_item))
-        recyclerviewDetails.layoutManager = LinearLayoutManager(this)
-        recyclerviewDetails.setHasFixedSize(true)
+        binding.recyclerviewDetails.layoutManager = LinearLayoutManager(this)
+        binding.recyclerviewDetails.setHasFixedSize(true)
         setToolbarTitle(resources.getString(R.string.ranges))
         replaceFragment(RangesFragment())
         val mAdapter = MenuAdapter(this, menuList) { _, item ->
@@ -43,11 +44,12 @@ class DetailActivity : AppCompatActivity() {
                 1 -> {
                     replaceFragment(RangesFragment())
                 }
+
                 6 -> {
                     replaceFragment(BlesigFragment())
                 }
             }
         }
-        recyclerviewDetails.adapter = mAdapter
+        binding.recyclerviewDetails.adapter = mAdapter
     }
 }

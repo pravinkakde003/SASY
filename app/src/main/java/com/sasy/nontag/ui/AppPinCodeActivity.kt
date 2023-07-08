@@ -7,13 +7,14 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.sasy.nontag.R
+import com.sasy.nontag.databinding.ActivityAppPincodeBinding
 import com.sasy.nontag.utils.dp2px
 import com.sasy.nontag.utils.launchAndClearStackActivity
 import com.sasy.nontag.utils.pinlock.PinButtonAdapter
 import com.sasy.nontag.utils.showToast
-import kotlinx.android.synthetic.main.activity_app_pincode.*
 
 class AppPinCodeActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityAppPincodeBinding
     private var pin = ""
 
     companion object {
@@ -23,14 +24,16 @@ class AppPinCodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app_pincode)
+        binding = ActivityAppPincodeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val windowInsetsController =
             ViewCompat.getWindowInsetsController(window.decorView)
 
         windowInsetsController?.isAppearanceLightNavigationBars = true
-        gridView.adapter = PinButtonAdapter(this)
-        gridView.numColumns = 3
+        binding.gridView.adapter = PinButtonAdapter(this)
+        binding.gridView.numColumns = 3
 
-        cancelButton.setOnClickListener {
+        binding.cancelButton.setOnClickListener {
             onCancelButtonPressed()
         }
 
@@ -40,7 +43,7 @@ class AppPinCodeActivity : AppCompatActivity() {
     private fun reloadPinView() {
         val dotSize = dp2px(this, 20.0f).toInt()
         val dotMargin = dp2px(this, 10.0f).toInt()
-        pinView.removeAllViews()
+        binding.pinView.removeAllViews()
         (1..getMaxPinSize()).forEach {
             val imageView = ImageView(this)
             val layoutParams = LinearLayout.LayoutParams(dotSize, dotSize, 0.0f)
@@ -51,7 +54,7 @@ class AppPinCodeActivity : AppCompatActivity() {
             } else {
                 imageView.setImageResource(R.drawable.dot_fill)
             }
-            pinView.addView(imageView)
+            binding.pinView.addView(imageView)
         }
     }
 

@@ -10,4 +10,7 @@ class DashboardViewModel : ViewModel() {
     val alreadyPairedDeviceList = ArrayList<DeviceListDataModel>()
 
     val scannedDeviceList = ArrayList<DeviceListDataModel>()
+    var selectedDeviceName = MutableLiveData("")
+    var selectedDeviceAddress = MutableLiveData("")
+
 }
