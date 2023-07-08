@@ -10,4 +10,7 @@ object Constants {
         Manifest.permission.BLUETOOTH_CONNECT,
         Manifest.permission.ACCESS_FINE_LOCATION,
     )
+
+    const val SELECTED_DEVICE_NAME_KEY = "selected_device_name"
+    const val SELECTED_DEVICE_ADDRESS_KEY = "selected_device_address"
 }

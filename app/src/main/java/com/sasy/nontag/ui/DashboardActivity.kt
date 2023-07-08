@@ -173,9 +173,12 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
                 this,
                 dashboardViewModel.alreadyPairedDeviceList
             ) { _, item ->
-                dashboardViewModel.selectedDeviceName.value = item.deviceName
-                dashboardViewModel.selectedDeviceAddress.value = item.device_id
-                launchActivity<DetailActivity> { }
+                dashboardViewModel.setSelectedDeviceName(item.deviceName)
+                dashboardViewModel.setSelectedDeviceAddress(item.device_id)
+                launchActivity<DetailActivity> {
+                    putExtra(Constants.SELECTED_DEVICE_NAME_KEY, item.deviceName)
+                    putExtra(Constants.SELECTED_DEVICE_ADDRESS_KEY, item.device_id)
+                }
             }
             binding.recyclerviewAlreadyPaired.adapter = pairedListAdapter
             binding.recyclerviewAlreadyPaired.show()

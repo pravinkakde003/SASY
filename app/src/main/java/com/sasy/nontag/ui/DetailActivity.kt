@@ -1,6 +1,7 @@
 package com.sasy.nontag.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sasy.nontag.R
@@ -9,14 +10,24 @@ import com.sasy.nontag.ui.adapter.MenuAdapter
 import com.sasy.nontag.ui.fragments.BlesigFragment
 import com.sasy.nontag.ui.fragments.RangesFragment
 import com.sasy.nontag.utils.AppUtils
+import com.sasy.nontag.utils.Constants
 import com.sasy.nontag.utils.replaceFragment
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
+
+    private val dashboardViewModel: DashboardViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        intent?.let {
+            intent.getStringExtra(Constants.SELECTED_DEVICE_NAME_KEY)
+                ?.let { deviceName -> dashboardViewModel.setSelectedDeviceName(deviceName) }
+            intent.getStringExtra(Constants.SELECTED_DEVICE_ADDRESS_KEY)
+                ?.let { deviceAddress -> dashboardViewModel.setSelectedDeviceAddress(deviceAddress) }
+        }
         setMenuRecyclerView()
         setupToolbar()
     }
