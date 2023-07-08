@@ -24,7 +24,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -51,12 +51,12 @@
                 android:value="" />
         </activity>
 
-<!--        <activity-->
-<!--            android:name=".ui.DashboardActivity"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/FullScreenTheme" />-->
+        <!--        <activity-->
+        <!--            android:name=".ui.DashboardActivity"-->
+        <!--            android:screenOrientation="portrait"-->
+        <!--            android:theme="@style/FullScreenTheme" />-->
 
-
+        <service android:name=".utils.bluetooth_utils.SerialService" />
         <activity
             android:name=".ui.DetailActivity"
             android:screenOrientation="portrait"
