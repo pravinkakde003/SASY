@@ -42,4 +42,7 @@
     <string name="bluetooth_state_on">Bluetooth State: On</string>
     <string name="no_scan_device_found">No available device found</string>
     <string name="no_paired_device_found">No paired device found</string>
+    <string name="connecting">Connecting...</string>
+    <string name="connected">Connected</string>
+    <string name="something_went_wrong">Something went wrong.</string>
 </resources>

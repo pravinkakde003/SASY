@@ -11,6 +11,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewStatus"
+        style="@style/AppTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorLightGray"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -21,7 +33,7 @@
         app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/textViewStatus"
         app:strokeColor="@color/app_primary_color"
         app:strokeWidth="2dp">
 

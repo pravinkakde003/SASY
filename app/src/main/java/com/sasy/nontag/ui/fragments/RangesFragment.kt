@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.sasy.nontag.databinding.FragmentRangesBinding
 import com.sasy.nontag.ui.DashboardViewModel
+import com.sasy.nontag.utils.bluetooth_utils.BluetoothState
 import com.sasy.nontag.utils.bluetooth_utils.SerialListener
 import com.sasy.nontag.utils.bluetooth_utils.SerialService
 import com.sasy.nontag.utils.bluetooth_utils.SerialSocket
@@ -107,6 +108,7 @@ class RangesFragment : Fragment(), ServiceConnection, SerialListener {
             val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
             val device = bluetoothAdapter.getRemoteDevice(deviceAddress)
             status("connecting...")
+            sharedViewModel.setBluetoothState(BluetoothState.ConnectingState)
             connected = Connected.Pending
             val socket = SerialSocket(requireActivity().applicationContext, device)
             service!!.connect(socket)
@@ -123,6 +125,7 @@ class RangesFragment : Fragment(), ServiceConnection, SerialListener {
     private fun send(str: String) {
         if (connected != Connected.True) {
             Toast.makeText(activity, "not connected", Toast.LENGTH_SHORT).show()
+            sharedViewModel.setBluetoothState(BluetoothState.Error("Not connected."))
             return
         }
         try {
@@ -147,7 +150,7 @@ class RangesFragment : Fragment(), ServiceConnection, SerialListener {
                 activity,
                 SerialService::class.java
             )
-        ) // prevents service destroy on unbind from recreated activity caused by orientation change
+        )
     }
 
     override fun onStop() {
@@ -157,11 +160,13 @@ class RangesFragment : Fragment(), ServiceConnection, SerialListener {
 
     override fun onSerialConnect() {
         status("connected")
+        sharedViewModel.setBluetoothState(BluetoothState.ConnectedState)
         connected = Connected.True
     }
 
     override fun onSerialConnectError(e: Exception) {
         status("connection failed: " + e.message)
+        sharedViewModel.setBluetoothState(BluetoothState.Error("Connection failed: " + e?.message))
         disconnect()
     }
 
@@ -177,6 +182,7 @@ class RangesFragment : Fragment(), ServiceConnection, SerialListener {
 
     override fun onSerialIoError(e: Exception?) {
         status("connection lost: " + e?.message)
+        sharedViewModel.setBluetoothState(BluetoothState.Error("Connection lost: " + e?.message))
         disconnect()
     }
 
