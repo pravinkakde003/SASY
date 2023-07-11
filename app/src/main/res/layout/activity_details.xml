@@ -11,17 +11,71 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textViewStatus"
-        style="@style/AppTextViewStyle"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/statusLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorLightGray"
-        android:padding="16dp"
-        android:textColor="@color/white"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:strokeColor="@color/primary_color_variant"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView_device_type"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_bluetooth_24" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_device_name"
+                style="@style/AppTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/imageView_device_type"
+                app:layout_constraintTop_toTopOf="@+id/imageView_device_type" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_device_address"
+                style="@style/AppTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorLightGray"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/textView_device_name"
+                app:layout_constraintTop_toBottomOf="@id/textView_device_name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_status"
+                style="@style/TitleTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/textView_device_address"
+                app:layout_constraintTop_toBottomOf="@id/textView_device_address" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
@@ -33,7 +87,7 @@
         app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewStatus"
+        app:layout_constraintTop_toBottomOf="@id/statusLayout"
         app:strokeColor="@color/app_primary_color"
         app:strokeWidth="2dp">
 

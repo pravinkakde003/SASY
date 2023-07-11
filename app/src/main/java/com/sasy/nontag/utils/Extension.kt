@@ -13,6 +13,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
@@ -204,4 +205,9 @@ val Context.permissionMissing: String
 
 fun Context.hasPermissions() = Constants.REQUIRED_PERMISSIONS.all {
     ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
+}
+
+fun TextView.setTextColorRes(@ColorRes colorRes: Int) {
+    val color = ContextCompat.getColor(context, colorRes)
+    setTextColor(color)
 }

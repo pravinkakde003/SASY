@@ -13,7 +13,7 @@ object Constants {
 
     const val SELECTED_DEVICE_NAME_KEY = "selected_device_name"
     const val SELECTED_DEVICE_ADDRESS_KEY = "selected_device_address"
-
+    const val SELECTED_DEVICE_ICON_TYPE = "selected_device_icon"
 
     const val INTENT_ACTION_DISCONNECT: String = "com.sasy.nontag.utils.Disconnect"
     const val NOTIFICATION_CHANNEL: String = "com.sasy.nontag.utils.Channel"
@@ -21,4 +21,8 @@ object Constants {
 
     // values have to be unique within each app
     const val NOTIFY_MANAGER_START_FOREGROUND_SERVICE = 1001
+
+    // DATA Constants
+    const val SET_XRANGE = "SET XRANGE"
+
 }

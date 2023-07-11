@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.sasy.nontag.databinding.FragmentRangesBinding
 import com.sasy.nontag.ui.DashboardViewModel
+import com.sasy.nontag.utils.Constants
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothState
 import com.sasy.nontag.utils.bluetooth_utils.SerialListener
 import com.sasy.nontag.utils.bluetooth_utils.SerialService
@@ -129,7 +130,7 @@ class RangesFragment : Fragment(), ServiceConnection, SerialListener {
             return
         }
         try {
-            val message = "SET XRANGE $str"
+            val message = "${Constants.SET_XRANGE} $str"
             val data: ByteArray = message.toByteArray()
             service?.write(data)
         } catch (e: Exception) {

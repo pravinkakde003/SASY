@@ -19,6 +19,9 @@ class DashboardViewModel : ViewModel() {
     private var _selectedDeviceAddress = MutableLiveData("")
     val selectedDeviceAddress: LiveData<String> = _selectedDeviceAddress
 
+    private var _selectedDeviceIcon = MutableLiveData("")
+    val selectedDeviceIcon: LiveData<String> = _selectedDeviceIcon
+
     private val _stateBluetooth = MutableLiveData<BluetoothState<String>?>()
     val stateBluetooth: LiveData<BluetoothState<String>?> = _stateBluetooth
 
@@ -28,6 +31,10 @@ class DashboardViewModel : ViewModel() {
 
     fun setSelectedDeviceAddress(setSelectedDeviceAddress: String) {
         _selectedDeviceAddress.value = setSelectedDeviceAddress
+    }
+
+    fun setSelectedDeviceIcon(setSelectedDeviceIcon: String) {
+        _selectedDeviceIcon.value = setSelectedDeviceIcon
     }
 
     fun setBluetoothState(state: BluetoothState<String>) {

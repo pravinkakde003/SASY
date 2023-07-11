@@ -6,7 +6,6 @@ import android.os.Looper
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.ActivityDetailsBinding
@@ -17,6 +16,7 @@ import com.sasy.nontag.utils.AppUtils
 import com.sasy.nontag.utils.Constants
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothState
 import com.sasy.nontag.utils.replaceFragment
+import com.sasy.nontag.utils.setTextColorRes
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
@@ -32,6 +32,8 @@ class DetailActivity : AppCompatActivity() {
                 ?.let { deviceName -> dashboardViewModel.setSelectedDeviceName(deviceName) }
             intent.getStringExtra(Constants.SELECTED_DEVICE_ADDRESS_KEY)
                 ?.let { deviceAddress -> dashboardViewModel.setSelectedDeviceAddress(deviceAddress) }
+            intent.getStringExtra(Constants.SELECTED_DEVICE_ICON_TYPE)
+                ?.let { deviceIcon -> dashboardViewModel.setSelectedDeviceIcon(deviceIcon) }
         }
         setMenuRecyclerView()
         setupToolbar()
@@ -48,47 +50,54 @@ class DetailActivity : AppCompatActivity() {
         ) { uiState ->
             when (uiState) {
                 is BluetoothState.ConnectingState -> {
-                    binding.textViewStatus.text = getString(R.string.connecting)
-                    binding.textViewStatus.setBackgroundColor(
-                        ContextCompat.getColor(
-                            applicationContext,
-                            R.color.colorLightGray
+
+                    val resourceId: Int =
+                        resources.getIdentifier(
+                            dashboardViewModel.selectedDeviceIcon.value,
+                            "drawable",
+                            packageName
                         )
-                    )
+                    if (resourceId != 0) {
+                        binding.imageViewDeviceType.setImageResource(resourceId)
+                    }
+                    binding.textViewDeviceName.text =
+                        dashboardViewModel.selectedDeviceName.value
+                    binding.textViewDeviceAddress.text =
+                        dashboardViewModel.selectedDeviceAddress.value
+                    binding.textViewStatus.text = getString(R.string.connecting)
+                    binding.textViewStatus.setTextColorRes(R.color.colorLightGray)
                 }
 
                 is BluetoothState.ConnectedState -> {
                     Handler(Looper.getMainLooper()).postDelayed({
                         Log.e("TAGG", "ConnectedState")
+                        binding.textViewDeviceName.text =
+                            dashboardViewModel.selectedDeviceName.value
+                        binding.textViewDeviceAddress.text =
+                            dashboardViewModel.selectedDeviceAddress.value
                         binding.textViewStatus.text = getString(R.string.connected)
-                        binding.textViewStatus.setBackgroundColor(
-                            ContextCompat.getColor(
-                                applicationContext,
-                                R.color.app_primary_color
-                            )
-                        )
-                    }, 3000)
+                        binding.textViewStatus.setTextColorRes(R.color.app_primary_color)
+                    }, 2000)
                 }
 
                 is BluetoothState.Error -> {
                     Log.e("TAGG", "Error")
+                    binding.textViewDeviceName.text =
+                        dashboardViewModel.selectedDeviceName.value
+                    binding.textViewDeviceAddress.text =
+                        dashboardViewModel.selectedDeviceAddress.value
                     binding.textViewStatus.text = uiState.errorMessage
-                    binding.textViewStatus.setBackgroundColor(
-                        ContextCompat.getColor(
-                            applicationContext,
-                            R.color.error_color
-                        )
-                    )
+                    binding.textViewStatus.setTextColorRes(R.color.error_color)
                 }
 
                 else -> {
-                    binding.textViewStatus.text = getString(R.string.something_went_wrong)
-                    binding.textViewStatus.setBackgroundColor(
-                        ContextCompat.getColor(
-                            applicationContext,
-                            R.color.error_color
-                        )
-                    )
+                    binding.textViewDeviceName.text =
+                        dashboardViewModel.selectedDeviceName.value
+                    binding.textViewDeviceAddress.text =
+                        dashboardViewModel.selectedDeviceAddress.value
+                    binding.textViewStatus.text =
+                        getString(R.string.something_went_wrong)
+                    binding.textViewStatus.setTextColorRes(R.color.error_color)
                 }
             }
         }

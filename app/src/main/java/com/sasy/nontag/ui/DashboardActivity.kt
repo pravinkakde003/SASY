@@ -178,6 +178,7 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
                 launchActivity<DetailActivity> {
                     putExtra(Constants.SELECTED_DEVICE_NAME_KEY, item.deviceName)
                     putExtra(Constants.SELECTED_DEVICE_ADDRESS_KEY, item.device_id)
+                    putExtra(Constants.SELECTED_DEVICE_ICON_TYPE, item.imageIcon)
                 }
             }
             binding.recyclerviewAlreadyPaired.adapter = pairedListAdapter
