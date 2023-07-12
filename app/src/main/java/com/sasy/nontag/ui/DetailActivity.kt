@@ -100,14 +100,13 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
         super.onDestroy()
     }
 
-    fun send(str: String) {
+    fun send(message: String) {
         if (connected != Connected.True) {
             showToast("not connected")
             dashboardViewModel.setBluetoothState(BluetoothState.Error("Not connected."))
             return
         }
         try {
-            val message = "${Constants.SET_XRANGE} $str"
             val data: ByteArray = message.toByteArray()
             service?.write(data)
         } catch (e: Exception) {
