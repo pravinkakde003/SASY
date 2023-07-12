@@ -24,5 +24,8 @@ object Constants {
 
     // DATA Constants
     const val SET_XRANGE = "SET XRANGE"
-
+    const val SET_DB = "SET DB"
+    const val SET_RTC = "SET RTC"
+    const val SET_RID = "SET RID"
+    const val DEVICE_INFO = "GET SYSPARAM"
 }
