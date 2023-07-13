@@ -294,6 +294,9 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
                 10 -> {
                     replaceFragment(AddDeleteTagFragment())
                 }
+                12 -> {
+                    replaceFragment(BleFragment())
+                }
             }
         }
         binding.recyclerviewDetails.adapter = mAdapter

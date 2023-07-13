@@ -42,5 +42,25 @@
   {
     "id": 11,
     "name": "Get Tag List"
+  },
+  {
+    "id": 12,
+    "name": "BLE"
+  },
+  {
+    "id": 13,
+    "name": "Front-Camera"
+  },
+  {
+    "id": 14,
+    "name": "Back-Camera"
+  },
+  {
+    "id": 15,
+    "name": "Left-Camera"
+  },
+  {
+    "id": 16,
+    "name": "Right-Camera"
   }
 ]

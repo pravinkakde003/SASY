@@ -62,4 +62,8 @@
     <string name="add_tag">Add Tag</string>
     <string name="delete_tag">Delete Tag</string>
     <string name="enter_tag_value">Please enter Tag value.</string>
+    <string name="ble">BLE</string>
+    <string name="turn_on_off_ble_device">Turn on/off BLE device</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
 </resources>
