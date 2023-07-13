@@ -103,7 +103,7 @@ class SerialService : Service(), SerialListener {
         connected = false // ignore data,errors while disconnecting
         cancelNotification()
         if (socket != null) {
-            socket!!.disconnect()
+            socket?.disconnect()
             socket = null
         }
     }
@@ -111,7 +111,7 @@ class SerialService : Service(), SerialListener {
     @Throws(IOException::class)
     fun write(data: ByteArray?) {
         if (!connected) throw IOException("not connected")
-        socket!!.write(data)
+        socket?.write(data)
     }
 
     fun attach(listener: SerialListener) {

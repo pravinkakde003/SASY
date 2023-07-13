@@ -28,4 +28,6 @@ object Constants {
     const val SET_RTC = "SET RTC"
     const val SET_RID = "SET RID"
     const val DEVICE_INFO = "GET SYSPARAM"
+
+    const val GET_XRANGE = "GET XRANGE"
 }

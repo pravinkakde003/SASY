@@ -32,16 +32,15 @@ class RangesFragment : Fragment() {
         binding.buttonSetRange.setOnClickListener {
             val currentValue = binding.buttonIncrementDecrement.getCurrentNumber()
             if (currentValue > 0) {
-                (activity as DetailActivity).send(getFormattedData(currentValue.toString()))
+                (activity as DetailActivity).send("${Constants.SET_XRANGE} $currentValue${"\r"}")
             } else {
                 showToast("Please enter range value.")
             }
         }
+
+        binding.buttonGetRange.setOnClickListener {
+            (activity as DetailActivity).send("${Constants.GET_XRANGE} ${"\r"}")
+        }
     }
 
-    private fun getFormattedData(inputString: String): String {
-        return if (binding.checkboxCarriageReturn.isChecked) {
-            "${Constants.SET_XRANGE} $inputString${"\r"}"
-        } else "${Constants.SET_XRANGE} $inputString"
-    }
 }

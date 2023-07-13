@@ -676,7 +676,7 @@ public class MainActivity extends AppCompatActivity {
                     btnname = "GetXRANGE";
                     mConnectedThread.write("GET XRANGE" + "\r");
 //                    SystemClock.sleep(100);
-                    //  Toast.makeText(getApplicationContext(), "GET XRANGE : " + txtreceive.getText(), Toast.LENGTH_LONG).show();
+//                      Toast.makeText(getApplicationContext(), "GET XRANGE : " + txtreceive.getText(), Toast.LENGTH_LONG).show();
 
                 }
             }
