@@ -51,4 +51,6 @@
     <string name="set">Set</string>
     <string name="enter_rid_here">Enter 10 digit/character RID here</string>
     <string name="current_date_time">Current Date-Time</string>
+    <string name="clear_log">Clear Log</string>
+    <string name="are_you_sure_you_want_to_clear_log">Are you sure you want to clear log?</string>
 </resources>

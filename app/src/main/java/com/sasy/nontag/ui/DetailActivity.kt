@@ -12,7 +12,7 @@ import android.os.Looper
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.ActivityDetailsBinding
 import com.sasy.nontag.ui.adapter.MenuAdapter
@@ -23,6 +23,7 @@ import com.sasy.nontag.utils.bluetooth_utils.SerialListener
 import com.sasy.nontag.utils.bluetooth_utils.SerialService
 import com.sasy.nontag.utils.bluetooth_utils.SerialSocket
 import java.util.*
+
 
 class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
     private enum class Connected {
@@ -257,7 +258,8 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
     private fun setMenuRecyclerView() {
         val menuList =
             AppUtils.getMenuList(AppUtils.getArrayListFromJson(this, R.raw.menu_item))
-        binding.recyclerviewDetails.layoutManager = LinearLayoutManager(this)
+//        binding.recyclerviewDetails.layoutManager = LinearLayoutManager(this)
+        binding.recyclerviewDetails.layoutManager = GridLayoutManager(this, 2)
         binding.recyclerviewDetails.setHasFixedSize(true)
         setToolbarTitle(resources.getString(R.string.ranges))
         replaceFragment(RangesFragment())
@@ -279,6 +281,9 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
                 }
                 6 -> {
                     replaceFragment(BlesigFragment())
+                }
+                7 -> {
+                    replaceFragment(ClearLogFileFragment())
                 }
             }
         }
