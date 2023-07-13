@@ -53,4 +53,9 @@
     <string name="current_date_time">Current Date-Time</string>
     <string name="clear_log">Clear Log</string>
     <string name="are_you_sure_you_want_to_clear_log">Are you sure you want to clear log?</string>
+    <string name="speed">Speed</string>
+    <string name="please_enter_velocity">Please enter velocity value.</string>
+    <string name="enter_velocity">Enter velocity</string>
+    <string name="copy_firmware">Copy Firmware</string>
+    <string name="are_you_sure_you_want_to_copy_firmware">Are you sure you want to copy firmware?</string>
 </resources>

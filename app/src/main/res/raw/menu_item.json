@@ -26,5 +26,21 @@
   {
     "id": 7,
     "name": "Clear Log"
+  },
+  {
+    "id": 8,
+    "name": "Set Velocity"
+  },
+  {
+    "id": 9,
+    "name": "Copy Firmware"
+  },
+  {
+    "id": 10,
+    "name": "Tag (Add/Del)"
+  },
+  {
+    "id": 11,
+    "name": "Get Tag List"
   }
 ]

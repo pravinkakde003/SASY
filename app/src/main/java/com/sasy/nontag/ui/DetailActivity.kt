@@ -285,6 +285,12 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
                 7 -> {
                     replaceFragment(ClearLogFileFragment())
                 }
+                8 -> {
+                    replaceFragment(VelocityFragment())
+                }
+                9 -> {
+                    replaceFragment(CopyFirmwareFragment())
+                }
             }
         }
         binding.recyclerviewDetails.adapter = mAdapter
