@@ -58,4 +58,8 @@
     <string name="enter_velocity">Enter velocity</string>
     <string name="copy_firmware">Copy Firmware</string>
     <string name="are_you_sure_you_want_to_copy_firmware">Are you sure you want to copy firmware?</string>
+    <string name="enter_tag_id">Enter Tag ID</string>
+    <string name="add_tag">Add Tag</string>
+    <string name="delete_tag">Delete Tag</string>
+    <string name="enter_tag_value">Please enter Tag value.</string>
 </resources>
