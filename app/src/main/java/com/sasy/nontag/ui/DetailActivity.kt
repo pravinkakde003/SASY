@@ -30,7 +30,6 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
         False, Pending, True
     }
 
-    //    private var deviceAddress: String? = null
     private var service: SerialService? = null
     private var connected = Connected.False
     private var initialStart = true
@@ -296,6 +295,18 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
                 }
                 12 -> {
                     replaceFragment(BleFragment())
+                }
+                13 -> {
+                    replaceFragment(FrontCameraFragment())
+                }
+                14 -> {
+                    replaceFragment(BackCameraFragment())
+                }
+                15 -> {
+                    replaceFragment(LeftCameraFragment())
+                }
+                16 -> {
+                    replaceFragment(RightCameraFragment())
                 }
             }
         }

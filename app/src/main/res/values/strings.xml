@@ -66,4 +66,12 @@
     <string name="turn_on_off_ble_device">Turn on/off BLE device</string>
     <string name="on">On</string>
     <string name="off">Off</string>
+    <string name="front_camera">Front Camera</string>
+    <string name="back_camera">Back Camera</string>
+    <string name="left_camera">Left Camera</string>
+    <string name="right_camera">Right Camera</string>
+
+    <string name="turn_on_off_camera">Enable/Disable camera</string>
+    <string name="enable">Enable</string>
+    <string name="disable">Disable</string>
 </resources>
