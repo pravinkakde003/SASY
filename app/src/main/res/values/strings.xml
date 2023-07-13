@@ -44,7 +44,10 @@
     <string name="r_cr_carriage_return">&#47;r- CR(Carriage Return)</string>
     <string name="please_enter_range_value">Please enter range value.</string>
     <string name="please_enter_blesig_value">Please enter blesig value.</string>
+    <string name="please_enter_rid_value">Please enter 10 digit/character RID value.</string>
+    <string name="rid_value_length_error">Please valid RID value.</string>
     <string name="distance_value_in_meter">Distance value in meter</string>
     <string name="get">Get</string>
     <string name="set">Set</string>
+    <string name="enter_rid_here">Enter 10 digit/character RID here</string>
 </resources>
