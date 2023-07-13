@@ -81,13 +81,13 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
             initialStart = false
             isResumed = false
             runOnUiThread { connect() }
+            dashboardViewModel.setBluetoothState(BluetoothState.ConnectingState)
         }
-        dashboardViewModel.setBluetoothState(BluetoothState.ConnectingState)
     }
 
     override fun onStop() {
         try {
-            if (service != null && !isChangingConfigurations) service!!.detach()
+            if (service != null && !isChangingConfigurations) service?.detach()
             unbindService(this)
         } catch (ignored: Exception) {
         }
@@ -137,7 +137,7 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
             dashboardViewModel.setBluetoothState(BluetoothState.ConnectingState)
             connected = Connected.Pending
             val socket = SerialSocket(applicationContext, device)
-            service!!.connect(socket)
+            service?.connect(socket)
         } catch (e: Exception) {
             onSerialConnectError(e)
         }
