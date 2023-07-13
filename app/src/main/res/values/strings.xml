@@ -50,4 +50,5 @@
     <string name="get">Get</string>
     <string name="set">Set</string>
     <string name="enter_rid_here">Enter 10 digit/character RID here</string>
+    <string name="current_date_time">Current Date-Time</string>
 </resources>

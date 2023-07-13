@@ -16,10 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.ActivityDetailsBinding
 import com.sasy.nontag.ui.adapter.MenuAdapter
-import com.sasy.nontag.ui.fragments.BlesigFragment
-import com.sasy.nontag.ui.fragments.DataBaseFragment
-import com.sasy.nontag.ui.fragments.RangesFragment
-import com.sasy.nontag.ui.fragments.RidFragment
+import com.sasy.nontag.ui.fragments.*
 import com.sasy.nontag.utils.*
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothState
 import com.sasy.nontag.utils.bluetooth_utils.SerialListener
@@ -273,6 +270,9 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
                 }
                 2 -> {
                     replaceFragment(DataBaseFragment())
+                }
+                4 -> {
+                    replaceFragment(SyncRTFragment())
                 }
                 5 -> {
                     replaceFragment(RidFragment())
