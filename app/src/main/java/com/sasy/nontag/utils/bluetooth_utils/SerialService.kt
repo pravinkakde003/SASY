@@ -5,16 +5,12 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
-import android.os.Binder
-import android.os.Build
-import android.os.Handler
-import android.os.IBinder
-import android.os.Looper
+import android.os.*
 import androidx.core.app.NotificationCompat
 import com.sasy.nontag.R
 import com.sasy.nontag.utils.Constants
 import java.io.IOException
-import java.util.ArrayDeque
+import java.util.*
 
 /**
  * create notification and queue serial data while activity is not in the foreground
