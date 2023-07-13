@@ -40,7 +40,7 @@ class RangesFragment : Fragment() {
         }
 
         binding.buttonGetRange.setOnClickListener {
-            (activity as DetailActivity).send("${Constants.GET_XRANGE} ${"\r"}")
+            (activity as DetailActivity).send("${Constants.GET_XRANGE} ${Constants.CARRIAGE}")
         }
     }
 

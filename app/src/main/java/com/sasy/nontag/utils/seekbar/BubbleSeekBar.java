@@ -458,10 +458,6 @@ public class BubbleSeekBar extends View {
      * changing, the result is mBubbleCenterRawX. At last the WindowManager calls updateViewLayout()
      * to update the LayoutParameter.x of the BubbleView.
      * <p>
-     * 气泡BubbleView实际是通过WindowManager动态添加的一个视图，因此与SeekBar唯一的位置联系就是它们在屏幕上的
-     * 绝对坐标。
-     * 先计算进度mProgress为mMin时BubbleView的中心坐标（mBubbleCenterRawSolidX，mBubbleCenterRawSolidY），
-     * 然后根据进度来增量计算横坐标mBubbleCenterRawX，再动态设置LayoutParameter.x，就实现了气泡跟随滑动移动。
      */
     private void locatePositionInWindow() {
         getLocationInWindow(mPoint);
@@ -1486,5 +1482,10 @@ public class BubbleSeekBar extends View {
                 invalidate();
             }
         }
+    }
+
+
+    public void setBubbleProgressText(String progressText) {
+        mBubbleView.setProgressText(progressText);
     }
 }

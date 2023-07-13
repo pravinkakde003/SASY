@@ -25,6 +25,10 @@ object Constants {
     // DATA Constants
     const val CARRIAGE = "\r"
     const val SET_XRANGE = "SET XRANGE"
+
+    const val SET_BLESIG ="SET BLESIG"
+    const val GET_BLESIG ="GET BLESIG"
+
     const val SET_DB = "SET DB"
     const val SET_RTC = "SET RTC"
     const val SET_RID = "SET RID"

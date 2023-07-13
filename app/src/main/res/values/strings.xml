@@ -20,12 +20,8 @@
     <string name="already_paired">Already paired</string>
     <string name="back">Back</string>
     <string name="ranges">Range</string>
-    <string name="set_range">Set Range</string>
-    <string name="get_range">Get Range</string>
     <string name="long_text">Long</string>
     <string name="short_text">Short</string>
-    <string name="set_blesig">Set Blesig</string>
-
     <string name="error">Error</string>
     <string name="information">Information</string>
     <string name="ok">OK</string>
@@ -47,5 +43,8 @@
     <string name="something_went_wrong">Something went wrong.</string>
     <string name="r_cr_carriage_return">&#47;r- CR(Carriage Return)</string>
     <string name="please_enter_range_value">Please enter range value.</string>
+    <string name="please_enter_blesig_value">Please enter blesig value.</string>
     <string name="distance_value_in_meter">Distance value in meter</string>
+    <string name="get">Get</string>
+    <string name="set">Set</string>
 </resources>
