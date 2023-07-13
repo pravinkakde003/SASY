@@ -46,4 +46,5 @@
     <string name="connected">Connected</string>
     <string name="something_went_wrong">Something went wrong.</string>
     <string name="r_cr_carriage_return">&#47;r- CR(Carriage Return)</string>
+    <string name="please_enter_range_value">Please enter range value.</string>
 </resources>

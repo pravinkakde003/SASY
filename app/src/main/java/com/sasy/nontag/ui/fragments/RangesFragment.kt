@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.sasy.nontag.R
 import com.sasy.nontag.databinding.FragmentRangesBinding
 import com.sasy.nontag.ui.DetailActivity
 import com.sasy.nontag.utils.Constants
@@ -32,9 +33,9 @@ class RangesFragment : Fragment() {
         binding.buttonSetRange.setOnClickListener {
             val currentValue = binding.buttonIncrementDecrement.getCurrentNumber()
             if (currentValue > 0) {
-                (activity as DetailActivity).send("${Constants.SET_XRANGE} $currentValue${"\r"}")
+                (activity as DetailActivity).send("${Constants.SET_XRANGE} $currentValue${Constants.CARRIAGE}")
             } else {
-                showToast("Please enter range value.")
+                showToast(getString(R.string.please_enter_range_value))
             }
         }
 

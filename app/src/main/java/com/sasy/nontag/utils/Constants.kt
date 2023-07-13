@@ -23,6 +23,7 @@ object Constants {
     const val NOTIFY_MANAGER_START_FOREGROUND_SERVICE = 1001
 
     // DATA Constants
+    const val CARRIAGE = "\n"
     const val SET_XRANGE = "SET XRANGE"
     const val SET_DB = "SET DB"
     const val SET_RTC = "SET RTC"
