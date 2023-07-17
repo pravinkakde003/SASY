@@ -27,8 +27,9 @@
 
         <com.sasy.nontag.utils.IncreaseDecreaseButton
             android:id="@+id/buttonIncrementDecrement"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="92dp"
             app:activeIconColor="@color/black"
             app:initNumber="0"
             app:layout_constraintEnd_toEndOf="parent"
