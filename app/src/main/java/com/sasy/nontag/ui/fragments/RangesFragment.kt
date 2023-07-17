@@ -33,6 +33,7 @@ class RangesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeState()
+        dashboardViewModel.resetReceivedText()
         binding.buttonSetRange.setOnClickListener {
             val currentValue = binding.buttonIncrementDecrement.getCurrentNumber()
             if (currentValue > 0) {
