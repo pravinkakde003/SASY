@@ -102,7 +102,7 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
     fun send(message: String) {
         if (connected != Connected.True) {
             showToast("not connected")
-            dashboardViewModel.setBluetoothState(BluetoothState.Error("Not connected."))
+            dashboardViewModel.setBluetoothState(BluetoothState.Error(resources.getString(R.string.not_connected)))
             return
         }
         try {
