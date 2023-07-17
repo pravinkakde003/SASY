@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.FragmentBlesigBinding
+import com.sasy.nontag.ui.DashboardViewModel
 import com.sasy.nontag.ui.DetailActivity
 import com.sasy.nontag.utils.Constants
 import com.sasy.nontag.utils.seekbar.BubbleSeekBar
@@ -16,7 +18,7 @@ import com.sasy.nontag.utils.showToast
 
 class BlesigFragment : Fragment() {
     private lateinit var binding: FragmentBlesigBinding
-
+    private val dashboardViewModel: DashboardViewModel by activityViewModels()
     var selectedBlesigValue = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,9 +34,19 @@ class BlesigFragment : Fragment() {
         return binding.root
     }
 
+    private fun observeState() {
+        dashboardViewModel.receivedText.observe(
+            this
+        ) { receivedText ->
+            receivedText?.let {
+                binding.textViewGetBlesig.text = receivedText.trim()
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeState()
         binding.seekBar.setCustomSectionTextArray { _, array ->
             getBlesigArray(array)
             array

@@ -264,6 +264,7 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
         observeState()
         val mAdapter = MenuAdapter(this, menuList) { _, item ->
             setToolbarTitle(item.name)
+            dashboardViewModel.setReceivedText("-")
             when (item.id) {
                 1 -> {
                     replaceFragment(RangesFragment())
