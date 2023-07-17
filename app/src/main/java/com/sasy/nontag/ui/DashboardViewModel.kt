@@ -25,6 +25,13 @@ class DashboardViewModel : ViewModel() {
     private val _stateBluetooth = MutableLiveData<BluetoothState<String>?>()
     val stateBluetooth: LiveData<BluetoothState<String>?> = _stateBluetooth
 
+    private val _receivedText = MutableLiveData<String>()
+    val receivedText: LiveData<String> get() = _receivedText
+
+    fun setReceivedText(receivedText: String) {
+        _receivedText.value = receivedText
+    }
+
     fun setSelectedDeviceName(selectedDeviceName: String) {
         _selectedDeviceName.value = selectedDeviceName
     }

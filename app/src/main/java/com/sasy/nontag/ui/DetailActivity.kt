@@ -178,9 +178,9 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
 
     private fun receive(datas: ArrayDeque<ByteArray>) {
         for (data in datas) {
-            var msg = String(data)
+            val msg = String(data)
             if (msg.isNotEmpty()) {
-                showToast(msg)
+                dashboardViewModel.setReceivedText(msg)
             }
         }
     }
@@ -191,7 +191,6 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
         ) { uiState ->
             when (uiState) {
                 is BluetoothState.ConnectingState -> {
-
                     val resourceId: Int =
                         resources.getIdentifier(
                             dashboardViewModel.selectedDeviceIcon.value,

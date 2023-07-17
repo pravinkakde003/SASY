@@ -27,7 +27,7 @@
 
         <com.sasy.nontag.utils.IncreaseDecreaseButton
             android:id="@+id/buttonIncrementDecrement"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:activeIconColor="@color/black"
             app:initNumber="0"
@@ -49,18 +49,18 @@
             app:layout_constraintStart_toStartOf="@id/buttonIncrementDecrement"
             app:layout_constraintTop_toBottomOf="@id/buttonIncrementDecrement" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView_get_range"
             style="@style/AppTextViewStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/border_gray"
-            android:paddingHorizontal="56dp"
-            android:paddingVertical="13dp"
+            android:gravity="center_horizontal"
+            android:paddingVertical="17dp"
             android:text="-"
+            android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/buttonIncrementDecrement"
             app:layout_constraintTop_toTopOf="@+id/buttonIncrementDecrement" />

@@ -3,8 +3,8 @@ package com.sasy.nontag.utils
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
-import android.widget.LinearLayout
 import androidx.annotation.ColorInt
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import com.sasy.nontag.R
@@ -13,7 +13,7 @@ import kotlin.properties.Delegates
 
 class IncreaseDecreaseButton @JvmOverloads constructor(
     context: Context, private val attrs: AttributeSet? = null,
-) : LinearLayout(context, attrs) {
+) : ConstraintLayout(context, attrs) {
 
     private var iconSize: Float = 0.0f
     private var textSizeNumber: Float = 0.0f
