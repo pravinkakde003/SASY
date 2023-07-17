@@ -17,11 +17,14 @@ import com.sasy.nontag.R
 import com.sasy.nontag.databinding.ActivityDetailsBinding
 import com.sasy.nontag.ui.adapter.MenuAdapter
 import com.sasy.nontag.ui.fragments.*
-import com.sasy.nontag.utils.*
+import com.sasy.nontag.utils.AppUtils
+import com.sasy.nontag.utils.Constants
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothState
 import com.sasy.nontag.utils.bluetooth_utils.SerialListener
 import com.sasy.nontag.utils.bluetooth_utils.SerialService
 import com.sasy.nontag.utils.bluetooth_utils.SerialSocket
+import com.sasy.nontag.utils.replaceFragment
+import com.sasy.nontag.utils.setTextColorRes
 import java.util.*
 
 
@@ -101,7 +104,7 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
 
     fun send(message: String) {
         if (connected != Connected.True) {
-            showToast("not connected")
+            // showToast("not connected")
             dashboardViewModel.setBluetoothState(BluetoothState.Error(resources.getString(R.string.not_connected)))
             return
         }
@@ -177,7 +180,7 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
     }
 
     private fun status(str: String) {
-        showToast(str)
+//        showToast(str)
     }
 
     private fun receive(datas: ArrayDeque<ByteArray>) {

@@ -83,14 +83,33 @@ class BlesigFragment : Fragment() {
 
         binding.buttonSetBlesig.setOnClickListener {
             if (selectedBlesigValue.isNotEmpty()) {
-                (activity as DetailActivity).send("${Constants.SET_BLESIG} $selectedBlesigValue${Constants.CARRIAGE}")
+                if (dashboardViewModel.isConnected()) {
+                    (activity as DetailActivity).send("${Constants.SET_BLESIG} $selectedBlesigValue${Constants.CARRIAGE}")
+                    showDataStatus(
+                        DetailActivity.Status.Success
+                    )
+                } else {
+                    showDataStatus(
+                        DetailActivity.Status.Error
+                    )
+                }
             } else {
-                showToast(getString(R.string.please_enter_blesig_value))
+                showDataStatus(
+                    DetailActivity.Status.Error,
+                    getString(R.string.please_enter_blesig_value)
+                )
             }
         }
 
         binding.buttonGetBlesig.setOnClickListener {
-            (activity as DetailActivity).send("${Constants.GET_BLESIG} ${Constants.CARRIAGE}")
+            if (dashboardViewModel.isConnected()) {
+                (activity as DetailActivity).send("${Constants.GET_BLESIG} ${Constants.CARRIAGE}")
+            } else {
+                showDataStatus(
+                    DetailActivity.Status.Error,
+                    getString(R.string.not_connected)
+                )
+            }
         }
     }
 
@@ -120,5 +139,24 @@ class BlesigFragment : Fragment() {
         array.add(7, "A5")
         array.add(8, "A4")
         return array
+    }
+
+    private fun showDataStatus(status: DetailActivity.Status, statusMsg: String = "") {
+        binding.dataSentStatusTextView.visibility = View.VISIBLE
+        if (status == DetailActivity.Status.Success) {
+            binding.dataSentStatusTextView.setBackgroundResource(R.color.transparent_green)
+            binding.dataSentStatusTextView.text = getString(R.string.sent)
+        } else if (status == DetailActivity.Status.Error) {
+            binding.dataSentStatusTextView.setBackgroundResource(R.color.transparent_red)
+            if (statusMsg.isNullOrEmpty()) {
+                binding.dataSentStatusTextView.text = getString(R.string.not_sent)
+            } else {
+                binding.dataSentStatusTextView.text = statusMsg
+            }
+        }
+
+        binding.dataSentStatusTextView.postDelayed({
+            binding.dataSentStatusTextView.visibility = View.GONE
+        }, Constants.TOAST_DELAY)
     }
 }

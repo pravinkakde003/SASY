@@ -5,6 +5,8 @@ import android.Manifest
 object Constants {
     const val BLUETOOTH_REQUEST_CODE = 101
     const val PERMISSION_BLUETOOTH_REQUEST_CODE = 102
+
+    const val TOAST_DELAY = 1000L
     val REQUIRED_PERMISSIONS = arrayOf(
         Manifest.permission.BLUETOOTH_SCAN,
         Manifest.permission.BLUETOOTH_CONNECT,

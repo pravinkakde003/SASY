@@ -82,6 +82,6 @@ class RidFragment : Fragment() {
 
         binding.dataSentStatusTextView.postDelayed({
             binding.dataSentStatusTextView.visibility = View.GONE
-        }, 2000)
+        }, Constants.TOAST_DELAY)
     }
 }

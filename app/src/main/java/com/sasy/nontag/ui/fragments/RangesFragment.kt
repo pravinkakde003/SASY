@@ -82,7 +82,7 @@ class RangesFragment : Fragment() {
 
         binding.dataSentStatusTextView.postDelayed({
             binding.dataSentStatusTextView.visibility = View.GONE
-        }, 2000)
+        }, Constants.TOAST_DELAY)
     }
 
     private fun observeState() {
