@@ -30,6 +30,10 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
         False, Pending, True
     }
 
+    enum class Status {
+        Success, Error
+    }
+
     private var service: SerialService? = null
     private var connected = Connected.False
     private var initialStart = true

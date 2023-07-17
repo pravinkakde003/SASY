@@ -74,4 +74,7 @@
     <string name="turn_on_off_camera">Enable/Disable camera</string>
     <string name="enable">Enable</string>
     <string name="disable">Disable</string>
+    <string name="sent">Sent</string>
+    <string name="not_sent">Not Sent</string>
+    <string name="not_connected">Not Connected</string>
 </resources>

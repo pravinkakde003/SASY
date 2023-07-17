@@ -75,6 +75,20 @@
             app:layout_constraintEnd_toEndOf="@id/textView_get_range"
             app:layout_constraintStart_toStartOf="@id/textView_get_range"
             app:layout_constraintTop_toTopOf="@+id/button_set_range" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/dataSentStatusTextView"
+        style="@style/AppTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/transparent_green"
+        android:elevation="12dp"
+        android:padding="8dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,6 @@ import com.sasy.nontag.databinding.FragmentRangesBinding
 import com.sasy.nontag.ui.DashboardViewModel
 import com.sasy.nontag.ui.DetailActivity
 import com.sasy.nontag.utils.Constants
-import com.sasy.nontag.utils.showToast
 
 
 class RangesFragment : Fragment() {
@@ -37,15 +36,53 @@ class RangesFragment : Fragment() {
         binding.buttonSetRange.setOnClickListener {
             val currentValue = binding.buttonIncrementDecrement.getCurrentNumber()
             if (currentValue > 0) {
-                (activity as DetailActivity).send("${Constants.SET_XRANGE} $currentValue${Constants.CARRIAGE}")
+                if (dashboardViewModel.isConnected()) {
+                    (activity as DetailActivity).send("${Constants.SET_XRANGE} $currentValue${Constants.CARRIAGE}")
+                    showDataStatus(
+                        DetailActivity.Status.Success
+                    )
+                } else {
+                    showDataStatus(
+                        DetailActivity.Status.Error
+                    )
+                }
             } else {
-                showToast(getString(R.string.please_enter_range_value))
+                showDataStatus(
+                    DetailActivity.Status.Error,
+                    getString(R.string.please_enter_range_value)
+                )
             }
         }
 
         binding.buttonGetRange.setOnClickListener {
-            (activity as DetailActivity).send("${Constants.GET_XRANGE}${Constants.CARRIAGE}")
+            if (dashboardViewModel.isConnected()) {
+                (activity as DetailActivity).send("${Constants.GET_XRANGE}${Constants.CARRIAGE}")
+            } else {
+                showDataStatus(
+                    DetailActivity.Status.Error,
+                    getString(R.string.not_connected)
+                )
+            }
         }
+    }
+
+    private fun showDataStatus(status: DetailActivity.Status, statusMsg: String = "") {
+        binding.dataSentStatusTextView.visibility = View.VISIBLE
+        if (status == DetailActivity.Status.Success) {
+            binding.dataSentStatusTextView.setBackgroundResource(R.color.transparent_green)
+            binding.dataSentStatusTextView.text = getString(R.string.sent)
+        } else if (status == DetailActivity.Status.Error) {
+            binding.dataSentStatusTextView.setBackgroundResource(R.color.transparent_red)
+            if (statusMsg.isNullOrEmpty()) {
+                binding.dataSentStatusTextView.text = getString(R.string.not_sent)
+            } else {
+                binding.dataSentStatusTextView.text = statusMsg
+            }
+        }
+
+        binding.dataSentStatusTextView.postDelayed({
+            binding.dataSentStatusTextView.visibility = View.GONE
+        }, 2000)
     }
 
     private fun observeState() {

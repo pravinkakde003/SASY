@@ -47,4 +47,8 @@ class DashboardViewModel : ViewModel() {
     fun setBluetoothState(state: BluetoothState<String>) {
         _stateBluetooth.value = state
     }
+
+    fun isConnected(): Boolean {
+        return stateBluetooth.value?.equals(BluetoothState.ConnectedState) == true
+    }
 }

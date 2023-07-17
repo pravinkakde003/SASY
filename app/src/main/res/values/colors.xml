@@ -13,4 +13,7 @@
     <color name="increase_decrease_lib_active">#FF7E2E</color>
     <color name="increase_decrease_lib_inactive">#66000000</color>
     <color name="error_color">#EC4134</color>
+
+    <color name="transparent_green">#B34caf50</color>
+    <color name="transparent_red">#B3EC4134</color>
 </resources>
