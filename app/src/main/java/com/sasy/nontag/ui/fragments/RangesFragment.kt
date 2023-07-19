@@ -88,7 +88,7 @@ class RangesFragment : Fragment() {
 
     private fun observeState() {
         dashboardViewModel.receivedText.observe(
-            this
+            viewLifecycleOwner
         ) { receivedText ->
             receivedText?.let {
                 binding.textViewGetRange.text = receivedText.trim()

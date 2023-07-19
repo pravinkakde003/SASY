@@ -36,7 +36,7 @@ class BlesigFragment : Fragment() {
 
     private fun observeState() {
         dashboardViewModel.receivedText.observe(
-            this
+            viewLifecycleOwner
         ) { receivedText ->
             receivedText?.let {
                 binding.textViewGetBlesig.text = receivedText.trim()
