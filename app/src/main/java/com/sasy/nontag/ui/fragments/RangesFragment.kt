@@ -16,6 +16,7 @@ import com.sasy.nontag.utils.Constants
 class RangesFragment : Fragment() {
     private lateinit var binding: FragmentRangesBinding
     private val dashboardViewModel: DashboardViewModel by activityViewModels()
+    private var isGetButtonClicked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +58,7 @@ class RangesFragment : Fragment() {
 
         binding.buttonGetRange.setOnClickListener {
             if (dashboardViewModel.isConnected()) {
+                isGetButtonClicked = true
                 (activity as DetailActivity).send("${Constants.GET_XRANGE}${Constants.CARRIAGE}")
             } else {
                 showDataStatus(
@@ -90,8 +92,11 @@ class RangesFragment : Fragment() {
         dashboardViewModel.receivedText.observe(
             viewLifecycleOwner
         ) { receivedText ->
-            receivedText?.let {
-                binding.textViewGetRange.text = receivedText.trim()
+            if (isGetButtonClicked) {
+                isGetButtonClicked = false
+                receivedText?.let {
+                    binding.textViewGetRange.text = receivedText.trim()
+                }
             }
         }
     }

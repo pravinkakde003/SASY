@@ -19,6 +19,7 @@ class BlesigFragment : Fragment() {
     private lateinit var binding: FragmentBlesigBinding
     private val dashboardViewModel: DashboardViewModel by activityViewModels()
     var selectedBlesigValue = ""
+    private var isGetButtonClicked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +38,11 @@ class BlesigFragment : Fragment() {
         dashboardViewModel.receivedText.observe(
             viewLifecycleOwner
         ) { receivedText ->
-            receivedText?.let {
-                binding.textViewGetBlesig.text = receivedText.trim()
+            if (isGetButtonClicked) {
+                isGetButtonClicked = false
+                receivedText?.let {
+                    binding.textViewGetBlesig.text = receivedText.trim()
+                }
             }
         }
     }
@@ -103,6 +107,7 @@ class BlesigFragment : Fragment() {
 
         binding.buttonGetBlesig.setOnClickListener {
             if (dashboardViewModel.isConnected()) {
+                isGetButtonClicked = true
                 (activity as DetailActivity).send("${Constants.GET_BLESIG} ${Constants.CARRIAGE}")
             } else {
                 showDataStatus(
