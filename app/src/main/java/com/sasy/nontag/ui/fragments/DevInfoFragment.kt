@@ -45,7 +45,7 @@ class DevInfoFragment : Fragment() {
         dashboardViewModel.resetReceivedText()
         binding.buttonGetDevInfo.setOnClickListener {
             if (dashboardViewModel.isConnected()) {
-                (activity as DetailActivity).send("${Constants.DEVICE_INFO} ${Constants.CARRIAGE}")
+                (activity as DetailActivity).send("${Constants.DEVICE_INFO}${Constants.CARRIAGE}")
                 showDataStatus(
                     DetailActivity.Status.Success
                 )

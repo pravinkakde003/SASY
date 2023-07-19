@@ -32,12 +32,16 @@ object Constants {
     const val SET_BLESIG = "SET BLESIG"
     const val GET_BLESIG = "GET BLESIG"
 
-    const val SET_DB = "SET DB"
+    const val SET_XDB = "SET XDB"
     const val SET_RID = "SET RID"
     const val SET_RTC = "SET RTC"
+
     const val CLEAR_LOG = "SET DEFLFILE"
+    const val SET_DEFAULT_LOG = "SET DEFPFILE"
+
     const val SET_VELOCITY = "SET VELOCITY"
     const val COPY_FIRMWARE = "SET CPYUSBFIRM"
+
 
     const val ADD_TAG = "SET ADDTAG"
     const val DELETE_TAG = "SET DELTAG"

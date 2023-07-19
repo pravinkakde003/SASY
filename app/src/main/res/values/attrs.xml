@@ -24,6 +24,7 @@
         <attr name="inactiveIconColor" format="color" />
         <attr name="textSizeNumber" format="dimension" />
         <attr name="iconSize" format="dimension" />
+        <attr name="stepSize" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="BubbleSeekBar">

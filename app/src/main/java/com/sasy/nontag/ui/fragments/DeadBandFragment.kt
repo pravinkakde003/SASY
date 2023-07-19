@@ -7,52 +7,47 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.sasy.nontag.R
-import com.sasy.nontag.databinding.FragmentBackCameraBinding
+import com.sasy.nontag.databinding.FragmentDeadbandBinding
 import com.sasy.nontag.ui.DashboardViewModel
 import com.sasy.nontag.ui.DetailActivity
 import com.sasy.nontag.utils.Constants
 
 
-class BackCameraFragment : Fragment() {
-    private lateinit var binding: FragmentBackCameraBinding
+class DeadBandFragment : Fragment() {
+    private lateinit var binding: FragmentDeadbandBinding
     private val dashboardViewModel: DashboardViewModel by activityViewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentBackCameraBinding.inflate(layoutInflater)
+        binding = FragmentDeadbandBinding.inflate(layoutInflater)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBackCameraBinding.inflate(inflater, container, false)
+        binding = FragmentDeadbandBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonTurnOn.setOnClickListener {
-            if (dashboardViewModel.isConnected()) {
-                (activity as DetailActivity).send("${Constants.BLE_BACK_CAMERA_ENABLE_DISABLE} 1${Constants.CARRIAGE}")
-                showDataStatus(
-                    DetailActivity.Status.Success
-                )
+        binding.buttonSetDb.setOnClickListener {
+            val currentValue = binding.buttonIncrementDecrement.getCurrentNumber()
+            if (currentValue > 0) {
+                if (dashboardViewModel.isConnected()) {
+                    (activity as DetailActivity).send("${Constants.SET_XDB} $currentValue${Constants.CARRIAGE}")
+                    showDataStatus(
+                        DetailActivity.Status.Success
+                    )
+                } else {
+                    showDataStatus(
+                        DetailActivity.Status.Error
+                    )
+                }
             } else {
                 showDataStatus(
-                    DetailActivity.Status.Error
-                )
-            }
-        }
-        binding.buttonTurnOff.setOnClickListener {
-            if (dashboardViewModel.isConnected()) {
-                (activity as DetailActivity).send("${Constants.BLE_BACK_CAMERA_ENABLE_DISABLE} 0${Constants.CARRIAGE}")
-                showDataStatus(
-                    DetailActivity.Status.Success
-                )
-            } else {
-                showDataStatus(
-                    DetailActivity.Status.Error
+                    DetailActivity.Status.Error,
+                    getString(R.string.please_enter_range_value)
                 )
             }
         }

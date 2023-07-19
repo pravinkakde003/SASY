@@ -7,46 +7,34 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.sasy.nontag.R
-import com.sasy.nontag.databinding.FragmentLeftCameraBinding
+import com.sasy.nontag.databinding.FragmentDefaultLogBinding
 import com.sasy.nontag.ui.DashboardViewModel
 import com.sasy.nontag.ui.DetailActivity
 import com.sasy.nontag.utils.Constants
 
 
-class LeftCameraFragment : Fragment() {
-    private lateinit var binding: FragmentLeftCameraBinding
+class SetDefaultLogFragment : Fragment() {
+    private lateinit var binding: FragmentDefaultLogBinding
     private val dashboardViewModel: DashboardViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentLeftCameraBinding.inflate(layoutInflater)
+        binding = FragmentDefaultLogBinding.inflate(layoutInflater)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLeftCameraBinding.inflate(inflater, container, false)
+        binding = FragmentDefaultLogBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonTurnOn.setOnClickListener {
+        binding.buttonSetDefaultLog.setOnClickListener {
             if (dashboardViewModel.isConnected()) {
-                (activity as DetailActivity).send("${Constants.BLE_LEFT_CAMERA_ENABLE_DISABLE} 1${Constants.CARRIAGE}")
-                showDataStatus(
-                    DetailActivity.Status.Success
-                )
-            } else {
-                showDataStatus(
-                    DetailActivity.Status.Error
-                )
-            }
-        }
-        binding.buttonTurnOff.setOnClickListener {
-            if (dashboardViewModel.isConnected()) {
-                (activity as DetailActivity).send("${Constants.BLE_LEFT_CAMERA_ENABLE_DISABLE} 0${Constants.CARRIAGE}")
+                (activity as DetailActivity).send("${Constants.SET_DEFAULT_LOG}${Constants.CARRIAGE}")
                 showDataStatus(
                     DetailActivity.Status.Success
                 )

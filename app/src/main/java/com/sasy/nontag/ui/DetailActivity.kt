@@ -16,7 +16,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.ActivityDetailsBinding
 import com.sasy.nontag.ui.adapter.MenuAdapter
-import com.sasy.nontag.ui.fragments.*
+import com.sasy.nontag.ui.fragments.AddDeleteTagFragment
+import com.sasy.nontag.ui.fragments.BleFragment
+import com.sasy.nontag.ui.fragments.BlesigFragment
+import com.sasy.nontag.ui.fragments.CameraFragment
+import com.sasy.nontag.ui.fragments.ClearLogFileFragment
+import com.sasy.nontag.ui.fragments.CopyFirmwareFragment
+import com.sasy.nontag.ui.fragments.DeadBandFragment
+import com.sasy.nontag.ui.fragments.DevInfoFragment
+import com.sasy.nontag.ui.fragments.RangesFragment
+import com.sasy.nontag.ui.fragments.SetDefaultLogFragment
+import com.sasy.nontag.ui.fragments.VelocityFragment
 import com.sasy.nontag.utils.AppUtils
 import com.sasy.nontag.utils.Constants
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothState
@@ -25,7 +35,7 @@ import com.sasy.nontag.utils.bluetooth_utils.SerialService
 import com.sasy.nontag.utils.bluetooth_utils.SerialSocket
 import com.sasy.nontag.utils.replaceFragment
 import com.sasy.nontag.utils.setTextColorRes
-import java.util.*
+import java.util.ArrayDeque
 
 
 class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
@@ -263,7 +273,6 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
     private fun setMenuRecyclerView() {
         val menuList =
             AppUtils.getMenuList(AppUtils.getArrayListFromJson(this, R.raw.menu_item))
-//        binding.recyclerviewDetails.layoutManager = LinearLayoutManager(this)
         binding.recyclerviewDetails.layoutManager = GridLayoutManager(this, 2)
         binding.recyclerviewDetails.setHasFixedSize(true)
         setToolbarTitle(resources.getString(R.string.ranges))
@@ -273,49 +282,59 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
             setToolbarTitle(item.name)
             when (item.id) {
                 1 -> {
-                    replaceFragment(RangesFragment())
+
                 }
+
                 2 -> {
-                    replaceFragment(DataBaseFragment())
-                }
-                3 -> {
                     replaceFragment(DevInfoFragment())
                 }
+
+                3 -> {
+                    replaceFragment(RangesFragment())
+                }
+
                 4 -> {
-                    replaceFragment(SyncRTFragment())
+                    replaceFragment(DeadBandFragment())
                 }
+
                 5 -> {
-                    replaceFragment(RidFragment())
+
                 }
+
                 6 -> {
-                    replaceFragment(BlesigFragment())
+                    replaceFragment(CopyFirmwareFragment())
                 }
+
                 7 -> {
                     replaceFragment(ClearLogFileFragment())
                 }
+
                 8 -> {
-                    replaceFragment(VelocityFragment())
+                    replaceFragment(SetDefaultLogFragment())
                 }
+
                 9 -> {
-                    replaceFragment(CopyFirmwareFragment())
-                }
-                10 -> {
                     replaceFragment(AddDeleteTagFragment())
                 }
-                12 -> {
+
+                10 -> {
+
+                }
+
+                11 -> {
                     replaceFragment(BleFragment())
                 }
+
+                12 -> {
+                    replaceFragment(BlesigFragment())
+                }
+
                 13 -> {
-                    replaceFragment(FrontCameraFragment())
+                    replaceFragment(VelocityFragment())
                 }
+
                 14 -> {
-                    replaceFragment(BackCameraFragment())
-                }
-                15 -> {
-                    replaceFragment(LeftCameraFragment())
-                }
-                16 -> {
-                    replaceFragment(RightCameraFragment())
+                    replaceFragment(CameraFragment())
                 }
             }
         }

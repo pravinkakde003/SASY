@@ -1,27 +1,27 @@
 [
   {
     "id": 1,
-    "name": "Range"
+    "name": "Device ID"
   },
   {
     "id": 2,
-    "name": "Database"
+    "name": "Device Info"
   },
   {
     "id": 3,
-    "name": "Dev Info"
+    "name": "Range"
   },
   {
     "id": 4,
-    "name": "Sync RT"
+    "name": "Deadband"
   },
   {
     "id": 5,
-    "name": "Rid"
+    "name": "Time"
   },
   {
     "id": 6,
-    "name": "Blesig"
+    "name": "Firmware"
   },
   {
     "id": 7,
@@ -29,38 +29,30 @@
   },
   {
     "id": 8,
-    "name": "Set Velocity"
+    "name": "Default"
   },
   {
     "id": 9,
-    "name": "Copy Firmware"
+    "name": "Tag"
   },
   {
     "id": 10,
-    "name": "Tag (Add/Del)"
+    "name": "Tag List"
   },
   {
     "id": 11,
-    "name": "Get Tag List"
-  },
-  {
-    "id": 12,
     "name": "BLE"
   },
   {
+    "id": 12,
+    "name": "BLE Sig"
+  },
+  {
     "id": 13,
-    "name": "Front-Camera"
+    "name": "Velocity"
   },
   {
     "id": 14,
-    "name": "Back-Camera"
-  },
-  {
-    "id": 15,
-    "name": "Left-Camera"
-  },
-  {
-    "id": 16,
-    "name": "Right-Camera"
+    "name": "Camera"
   }
 ]

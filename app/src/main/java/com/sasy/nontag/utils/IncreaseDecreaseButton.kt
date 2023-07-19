@@ -27,6 +27,7 @@ class IncreaseDecreaseButton @JvmOverloads constructor(
     private var textViewNumber: MaterialTextView? = null
     private var currentNumber = 0
     private var onChangeListener: ((number: Int, isIncrease: Boolean) -> Unit)? = null
+    private var stepSize: Int = 0
 
     init {
         initView()
@@ -42,10 +43,20 @@ class IncreaseDecreaseButton @JvmOverloads constructor(
 
     private fun initEvent() {
         increaseButton?.setOnClickListener {
-            handleOnNumber(++currentNumber, isIncrease = true)
+            if (stepSize != 0) {
+                currentNumber += stepSize
+                handleOnNumber(currentNumber, isIncrease = true)
+            } else {
+                handleOnNumber(++currentNumber, isIncrease = true)
+            }
         }
         decreaseButton?.setOnClickListener {
-            handleOnNumber(--currentNumber, isIncrease = false)
+            if (stepSize != 0) {
+                currentNumber -= stepSize
+                handleOnNumber((currentNumber), isIncrease = false)
+            } else {
+                handleOnNumber(--currentNumber, isIncrease = false)
+            }
         }
     }
 
@@ -163,7 +174,7 @@ class IncreaseDecreaseButton @JvmOverloads constructor(
                 R.styleable.IncreaseDecreaseButton_iconSize,
                 defaultIconSize
             )
-
+            stepSize = typedArray.getInt(R.styleable.IncreaseDecreaseButton_stepSize, 0)
         } catch (e: Exception) {
             e.printStackTrace()
         }
