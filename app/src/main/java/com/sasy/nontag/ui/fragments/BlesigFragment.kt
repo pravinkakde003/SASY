@@ -13,7 +13,6 @@ import com.sasy.nontag.ui.DashboardViewModel
 import com.sasy.nontag.ui.DetailActivity
 import com.sasy.nontag.utils.Constants
 import com.sasy.nontag.utils.seekbar.BubbleSeekBar
-import com.sasy.nontag.utils.showToast
 
 
 class BlesigFragment : Fragment() {
@@ -52,7 +51,7 @@ class BlesigFragment : Fragment() {
             array
         }
         binding.seekBar.setProgress(5f)
-        selectedBlesigValue = "AB"
+        selectedBlesigValue = "A8"
         binding.seekBar.onProgressChangedListener =
             object : BubbleSeekBar.OnProgressChangedListenerAdapter() {
                 override fun onProgressChanged(
@@ -84,7 +83,8 @@ class BlesigFragment : Fragment() {
         binding.buttonSetBlesig.setOnClickListener {
             if (selectedBlesigValue.isNotEmpty()) {
                 if (dashboardViewModel.isConnected()) {
-                    (activity as DetailActivity).send("${Constants.SET_BLESIG} $selectedBlesigValue${Constants.CARRIAGE}")
+                    val finalBlesigValue = getEquivalentBlesigValue(selectedBlesigValue)
+                    (activity as DetailActivity).send("${Constants.SET_BLESIG} $finalBlesigValue${Constants.CARRIAGE}")
                     showDataStatus(
                         DetailActivity.Status.Success
                     )
@@ -139,6 +139,47 @@ class BlesigFragment : Fragment() {
         array.add(7, "A5")
         array.add(8, "A4")
         return array
+    }
+
+    fun getEquivalentBlesigValue(selectedValue: String): String {
+        when (selectedValue) {
+            "AC" -> {
+                return "84"
+            }
+
+            "AB" -> {
+                return "85"
+            }
+
+            "AA" -> {
+                return "86"
+            }
+
+            "A9" -> {
+                return "87"
+            }
+
+            "A8" -> {
+                return "88"
+            }
+
+            "A7" -> {
+                return "89"
+            }
+
+            "A6" -> {
+                return "90"
+            }
+
+            "A5" -> {
+                return "91"
+            }
+
+            "A4" -> {
+                return "92"
+            }
+        }
+        return ""
     }
 
     private fun showDataStatus(status: DetailActivity.Status, statusMsg: String = "") {

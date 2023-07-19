@@ -19,6 +19,7 @@
             style="@style/AppTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="@string/short_text"
             android:textColor="@color/black_overlay"
             android:textSize="11sp"
@@ -30,10 +31,24 @@
             style="@style/AppTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="@string/long_text"
             android:textColor="@color/black_overlay"
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/defaultTextView"
+            style="@style/AppTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/default_value"
+            android:textColor="@color/black_overlay"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.sasy.nontag.utils.seekbar.BubbleSeekBar

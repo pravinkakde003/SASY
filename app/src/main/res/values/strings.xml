@@ -20,8 +20,8 @@
     <string name="already_paired">Already paired</string>
     <string name="back">Back</string>
     <string name="ranges">Range</string>
-    <string name="long_text">Long</string>
-    <string name="short_text">Short</string>
+    <string name="long_text">Card further\ndetection</string>
+    <string name="short_text">Card closer\ndetection</string>
     <string name="error">Error</string>
     <string name="information">Information</string>
     <string name="ok">OK</string>
@@ -83,4 +83,5 @@
     <string name="distance_value_in_cms">Distance value in cms</string>
     <string name="default_log">Default Log</string>
     <string name="set_default_log">Set Default Log</string>
+    <string name="default_value">Default</string>
 </resources>
