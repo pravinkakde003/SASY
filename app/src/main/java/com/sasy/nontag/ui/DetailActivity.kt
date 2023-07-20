@@ -28,6 +28,7 @@ import com.sasy.nontag.ui.fragments.RangesFragment
 import com.sasy.nontag.ui.fragments.RidFragment
 import com.sasy.nontag.ui.fragments.SetDefaultLogFragment
 import com.sasy.nontag.ui.fragments.SyncRTFragment
+import com.sasy.nontag.ui.fragments.TagListFragment
 import com.sasy.nontag.ui.fragments.VelocityFragment
 import com.sasy.nontag.utils.AppUtils
 import com.sasy.nontag.utils.Constants
@@ -320,7 +321,7 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
                 }
 
                 10 -> {
-
+                    replaceFragment(TagListFragment())
                 }
 
                 11 -> {

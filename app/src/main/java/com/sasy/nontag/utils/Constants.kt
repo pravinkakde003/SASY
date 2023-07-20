@@ -46,7 +46,7 @@ object Constants {
 
     const val ADD_TAG = "SET ADDTAG"
     const val DELETE_TAG = "SET DELTAG"
-    const val GET_TAG = "SET TAGLIST"
+    const val GET_TAG_LIST = "GET TAGLIST"
 
     const val BLE_MODE_ON_OFF = "SET BLEMOD"
 
