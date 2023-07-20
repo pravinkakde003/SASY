@@ -17,6 +17,7 @@ import com.sasy.nontag.utils.hideKeyBoard
 class VelocityFragment : Fragment() {
     private lateinit var binding: FragmentVelocityBinding
     private val dashboardViewModel: DashboardViewModel by activityViewModels()
+    private var isGetButtonClicked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +34,8 @@ class VelocityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeState()
+        dashboardViewModel.resetReceivedText()
         binding.buttonSetVelocity.setOnClickListener {
             val currentValue = binding.editTextVelocity.text
             currentValue?.let {
@@ -53,6 +56,35 @@ class VelocityFragment : Fragment() {
                         DetailActivity.Status.Error,
                         getString(R.string.please_enter_velocity)
                     )
+                }
+            }
+        }
+
+        binding.buttonGetVelocity.setOnClickListener {
+            if (dashboardViewModel.isConnected()) {
+                isGetButtonClicked = true
+                (activity as DetailActivity).send("${Constants.GET_VELOCITY}${Constants.CARRIAGE}")
+                showDataStatus(
+                    DetailActivity.Status.Success
+                )
+            } else {
+                showDataStatus(
+                    DetailActivity.Status.Error,
+                    getString(R.string.not_connected)
+                )
+            }
+        }
+    }
+
+
+    private fun observeState() {
+        dashboardViewModel.receivedText.observe(
+            viewLifecycleOwner
+        ) { receivedText ->
+            if (isGetButtonClicked) {
+                isGetButtonClicked = false
+                receivedText?.let {
+                    binding.textViewVelocity.text = receivedText.trim()
                 }
             }
         }

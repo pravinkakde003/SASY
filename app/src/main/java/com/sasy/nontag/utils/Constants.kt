@@ -40,6 +40,7 @@ object Constants {
     const val SET_DEFAULT_LOG = "SET DEFPFILE"
 
     const val SET_VELOCITY = "SET VELOCITY"
+    const val GET_VELOCITY = "GET VELOCITY"
     const val COPY_FIRMWARE = "SET CPYUSBFIRM"
 
 

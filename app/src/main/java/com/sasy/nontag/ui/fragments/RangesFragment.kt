@@ -60,6 +60,9 @@ class RangesFragment : Fragment() {
             if (dashboardViewModel.isConnected()) {
                 isGetButtonClicked = true
                 (activity as DetailActivity).send("${Constants.GET_XRANGE}${Constants.CARRIAGE}")
+                showDataStatus(
+                    DetailActivity.Status.Success
+                )
             } else {
                 showDataStatus(
                     DetailActivity.Status.Error,

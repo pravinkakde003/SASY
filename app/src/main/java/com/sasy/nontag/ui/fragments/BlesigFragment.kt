@@ -109,6 +109,9 @@ class BlesigFragment : Fragment() {
             if (dashboardViewModel.isConnected()) {
                 isGetButtonClicked = true
                 (activity as DetailActivity).send("${Constants.GET_BLESIG} ${Constants.CARRIAGE}")
+                showDataStatus(
+                    DetailActivity.Status.Success
+                )
             } else {
                 showDataStatus(
                     DetailActivity.Status.Error,

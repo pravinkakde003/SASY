@@ -1,14 +1,12 @@
 package com.sasy.nontag.ui.fragments
 
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearSmoothScroller
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.FragmentDevInfoBinding
 import com.sasy.nontag.model.DevInfoModel
@@ -16,15 +14,14 @@ import com.sasy.nontag.ui.DashboardViewModel
 import com.sasy.nontag.ui.DetailActivity
 import com.sasy.nontag.ui.adapter.DevInfoAdapter
 import com.sasy.nontag.utils.Constants
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.sasy.nontag.utils.hide
+import com.sasy.nontag.utils.show
 
 
 class DevInfoFragment : Fragment() {
     private lateinit var binding: FragmentDevInfoBinding
     private val dashboardViewModel: DashboardViewModel by activityViewModels()
+    private var isGetButtonClicked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +40,10 @@ class DevInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeState()
         dashboardViewModel.resetReceivedText()
+        setInitialView()
         binding.buttonGetDevInfo.setOnClickListener {
             if (dashboardViewModel.isConnected()) {
+                isGetButtonClicked = true
                 (activity as DetailActivity).send("${Constants.DEVICE_INFO}${Constants.CARRIAGE}")
                 showDataStatus(
                     DetailActivity.Status.Success
@@ -59,13 +58,30 @@ class DevInfoFragment : Fragment() {
 
     private fun observeState() {
         dashboardViewModel.receivedText.observe(
-            this
+            viewLifecycleOwner
         ) { receivedText ->
-            receivedText?.let {
-                setDataRecyclerView(receivedText.trim())
+            if (isGetButtonClicked) {
+                setViewAfterReceivedData()
+                isGetButtonClicked = false
+                receivedText?.let {
+                    setDataRecyclerView(receivedText.trim())
+                }
             }
         }
     }
+
+    private fun setViewAfterReceivedData() {
+        binding.textViewTitle.hide()
+        binding.textViewToolTip.hide()
+        binding.devInfoRecyclerView.show()
+    }
+
+    private fun setInitialView() {
+        binding.textViewTitle.show()
+        binding.textViewToolTip.show()
+        binding.devInfoRecyclerView.hide()
+    }
+
 
     private fun setDataRecyclerView(inputString: String) {
         val yourArray: List<String> = inputString.split("{0A}", "{0D}")
@@ -82,19 +98,19 @@ class DevInfoFragment : Fragment() {
         binding.devInfoRecyclerView.setHasFixedSize(true)
         val mAdapter = DevInfoAdapter(requireActivity(), mArrayList)
         binding.devInfoRecyclerView.adapter = mAdapter
-        val linearSmoothScroller: LinearSmoothScroller =
-            object : LinearSmoothScroller(requireContext()) {
-                override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float {
-                    return 1000f / displayMetrics.densityDpi
-                }
-            }
-        linearSmoothScroller.targetPosition = mAdapter.itemCount - 1
-        layoutManager.startSmoothScroll(linearSmoothScroller)
-
-        GlobalScope.launch(Dispatchers.Main) {
-            delay(1500)
-            binding.devInfoRecyclerView.smoothScrollToPosition(0)
-        }
+//        val linearSmoothScroller: LinearSmoothScroller =
+//            object : LinearSmoothScroller(requireContext()) {
+//                override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float {
+//                    return 1000f / displayMetrics.densityDpi
+//                }
+//            }
+//        linearSmoothScroller.targetPosition = mAdapter.itemCount - 1
+//        layoutManager.startSmoothScroll(linearSmoothScroller)
+//
+//        GlobalScope.launch(Dispatchers.Main) {
+//            delay(1500)
+//            binding.devInfoRecyclerView.smoothScrollToPosition(0)
+//        }
     }
 
     private fun showDataStatus(status: DetailActivity.Status, statusMsg: String = "") {

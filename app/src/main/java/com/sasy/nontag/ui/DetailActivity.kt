@@ -25,7 +25,9 @@ import com.sasy.nontag.ui.fragments.CopyFirmwareFragment
 import com.sasy.nontag.ui.fragments.DeadBandFragment
 import com.sasy.nontag.ui.fragments.DevInfoFragment
 import com.sasy.nontag.ui.fragments.RangesFragment
+import com.sasy.nontag.ui.fragments.RidFragment
 import com.sasy.nontag.ui.fragments.SetDefaultLogFragment
+import com.sasy.nontag.ui.fragments.SyncRTFragment
 import com.sasy.nontag.ui.fragments.VelocityFragment
 import com.sasy.nontag.utils.AppUtils
 import com.sasy.nontag.utils.Constants
@@ -275,14 +277,14 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
             AppUtils.getMenuList(AppUtils.getArrayListFromJson(this, R.raw.menu_item))
         binding.recyclerviewDetails.layoutManager = GridLayoutManager(this, 2)
         binding.recyclerviewDetails.setHasFixedSize(true)
-        setToolbarTitle(resources.getString(R.string.ranges))
-        replaceFragment(RangesFragment())
+        setToolbarTitle(getString(R.string.device_id))
+        replaceFragment(RidFragment())
         observeState()
         val mAdapter = MenuAdapter(this, menuList) { _, item ->
             setToolbarTitle(item.name)
             when (item.id) {
                 1 -> {
-
+                    replaceFragment(RidFragment())
                 }
 
                 2 -> {
@@ -298,7 +300,7 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
                 }
 
                 5 -> {
-
+                    replaceFragment(SyncRTFragment())
                 }
 
                 6 -> {

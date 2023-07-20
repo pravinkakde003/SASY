@@ -74,8 +74,8 @@
     <string name="sent">Sent</string>
     <string name="not_sent">Not Sent</string>
     <string name="not_connected">Not Connected</string>
-    <string name="get_dev_info">Get Dev info</string>
-
+    <string name="get_dev_info">Get device information</string>
+    <string name="dev_info">Device info</string>
     <string name="please_select_camera_value">Please select camera type.</string>
     <string name="front">Front</string>
     <string name="left">Left</string>
@@ -84,4 +84,5 @@
     <string name="default_log">Default Log</string>
     <string name="set_default_log">Set Default Log</string>
     <string name="default_value">Default</string>
+    <string name="device_id">Device ID</string>
 </resources>
