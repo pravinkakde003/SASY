@@ -11,7 +11,6 @@ import com.sasy.nontag.databinding.FragmentVelocityBinding
 import com.sasy.nontag.ui.DashboardViewModel
 import com.sasy.nontag.ui.DetailActivity
 import com.sasy.nontag.utils.Constants
-import com.sasy.nontag.utils.hideKeyBoard
 
 
 class VelocityFragment : Fragment() {
@@ -37,26 +36,23 @@ class VelocityFragment : Fragment() {
         observeState()
         dashboardViewModel.resetReceivedText()
         binding.buttonSetVelocity.setOnClickListener {
-            val currentValue = binding.editTextVelocity.text
-            currentValue?.let {
-                if (currentValue.isNotEmpty()) {
-                    if (dashboardViewModel.isConnected()) {
-                        requireActivity().hideKeyBoard()
-                        (activity as DetailActivity).send("${Constants.SET_VELOCITY} $currentValue${Constants.CARRIAGE}")
-                        showDataStatus(
-                            DetailActivity.Status.Success
-                        )
-                    } else {
-                        showDataStatus(
-                            DetailActivity.Status.Error
-                        )
-                    }
+            val currentValue = binding.buttonIncrementDecrement.getCurrentNumber()
+            if (currentValue > 0) {
+                if (dashboardViewModel.isConnected()) {
+                    (activity as DetailActivity).send("${Constants.SET_VELOCITY} $currentValue${Constants.CARRIAGE}")
+                    showDataStatus(
+                        DetailActivity.Status.Success
+                    )
                 } else {
                     showDataStatus(
-                        DetailActivity.Status.Error,
-                        getString(R.string.please_enter_velocity)
+                        DetailActivity.Status.Error
                     )
                 }
+            } else {
+                showDataStatus(
+                    DetailActivity.Status.Error,
+                    getString(R.string.please_enter_velocity)
+                )
             }
         }
 

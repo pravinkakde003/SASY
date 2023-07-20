@@ -21,26 +21,21 @@
             android:text="@string/speed"
             android:textColor="@color/black_overlay"
             android:textSize="11sp"
-            app:layout_constraintEnd_toEndOf="@id/editTextVelocity"
-            app:layout_constraintStart_toStartOf="@id/editTextVelocity"
+            app:layout_constraintEnd_toEndOf="@id/buttonIncrementDecrement"
+            app:layout_constraintStart_toStartOf="@id/buttonIncrementDecrement"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editTextVelocity"
+        <com.sasy.nontag.utils.IncreaseDecreaseButton
+            android:id="@+id/buttonIncrementDecrement"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/border_gray"
-            android:fontFamily="@font/product_sans_regular"
-            android:hint="@string/enter_velocity"
-            android:inputType="number"
-            android:maxLength="10"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="16dp"
-            android:textSize="14sp"
+            app:activeIconColor="@color/black"
+            app:initNumber="0"
             app:layout_constraintEnd_toStartOf="@id/textViewVelocity"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewToolTip" />
+            app:layout_constraintTop_toBottomOf="@id/textViewToolTip"
+            app:maxNumber="99999"
+            app:minNumber="0" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSetVelocity"
@@ -50,9 +45,9 @@
             android:layout_marginVertical="8dp"
             android:text="@string/set"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@id/editTextVelocity"
-            app:layout_constraintStart_toStartOf="@id/editTextVelocity"
-            app:layout_constraintTop_toBottomOf="@id/editTextVelocity" />
+            app:layout_constraintEnd_toEndOf="@id/buttonIncrementDecrement"
+            app:layout_constraintStart_toStartOf="@id/buttonIncrementDecrement"
+            app:layout_constraintTop_toBottomOf="@id/buttonIncrementDecrement" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewVelocity"
@@ -62,13 +57,13 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/border_gray"
             android:gravity="center_horizontal"
-            android:paddingVertical="15dp"
+            android:paddingVertical="14dp"
             android:text="-"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/editTextVelocity"
-            app:layout_constraintTop_toTopOf="@+id/editTextVelocity" />
+            app:layout_constraintStart_toEndOf="@id/buttonIncrementDecrement"
+            app:layout_constraintTop_toTopOf="@+id/buttonIncrementDecrement" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonGetVelocity"

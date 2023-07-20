@@ -57,9 +57,4 @@ object Constants {
     const val BLE_RIGHT_CAMERA_ENABLE_DISABLE = "SET CRIGHT"
 
     const val DEVICE_INFO = "GET SYSPARAM"
-
-    const val temp_input =
-        "{0D}RID->0000000777{0A}FW->1.3 Mar 17 2023 15:27:47{0A}HW->1.0{0A}LOGCNT->86{0A}TIMEINT->3{0A}XDB->50 Cm{0A}YDB->0 Cm{0A}XRANGE->7 meter{0A}YRANGE->10 meter{0A}VELOCITY->2m/sec{0A}{0A}BLE MODULE->ENABLED{0A}BLESIG->A8{0A}{0A}TIME->15:05:15{0A}CAL->14/07/2023{0A}RADAR1 not responding{0A}RADAR2 not responding{0A}BLE module version 1.1{0A}{0D}{0A}"
-
-
 }
