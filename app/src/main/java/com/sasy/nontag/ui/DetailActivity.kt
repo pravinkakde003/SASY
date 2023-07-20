@@ -172,7 +172,8 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
 
     override fun onSerialConnectError(e: Exception) {
         status("connection failed: " + e.message)
-        dashboardViewModel.setBluetoothState(BluetoothState.Error("Connection failed: " + e?.message))
+//        dashboardViewModel.setBluetoothState(BluetoothState.Error("Connection failed: " + e?.message))
+        dashboardViewModel.setBluetoothState(BluetoothState.Error("Connection failed" ))
         disconnect()
     }
 
@@ -188,7 +189,8 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
 
     override fun onSerialIoError(e: Exception?) {
         status("connection lost: " + e?.message)
-        dashboardViewModel.setBluetoothState(BluetoothState.Error("Connection lost: " + e?.message))
+//        dashboardViewModel.setBluetoothState(BluetoothState.Error("Connection lost: " + e?.message))
+        dashboardViewModel.setBluetoothState(BluetoothState.Error("Connection lost"))
         disconnect()
     }
 
