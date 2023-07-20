@@ -76,7 +76,6 @@ class VelocityFragment : Fragment() {
         }
     }
 
-
     private fun observeState() {
         dashboardViewModel.receivedText.observe(
             viewLifecycleOwner

@@ -34,6 +34,7 @@ object Constants {
 
     const val SET_XDB = "SET XDB"
     const val SET_RID = "SET RID"
+    const val GET_RID = "GET RID"
     const val SET_RTC = "SET RTC"
 
     const val CLEAR_LOG = "SET DEFLFILE"

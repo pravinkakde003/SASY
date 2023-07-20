@@ -17,6 +17,7 @@ import com.sasy.nontag.utils.hideKeyBoard
 class RidFragment : Fragment() {
     private lateinit var binding: FragmentRidBinding
     private val dashboardViewModel: DashboardViewModel by activityViewModels()
+    private var isGetButtonClicked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +34,8 @@ class RidFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeState()
+        dashboardViewModel.resetReceivedText()
         binding.buttonSetRid.setOnClickListener {
             val currentValue = binding.editTextRid.text
             currentValue?.let {
@@ -63,8 +66,35 @@ class RidFragment : Fragment() {
                 }
             }
         }
+
+        binding.buttonGetRid.setOnClickListener {
+            if (dashboardViewModel.isConnected()) {
+                isGetButtonClicked = true
+                (activity as DetailActivity).send("${Constants.GET_RID}${Constants.CARRIAGE}")
+                showDataStatus(
+                    DetailActivity.Status.Success
+                )
+            } else {
+                showDataStatus(
+                    DetailActivity.Status.Error,
+                    getString(R.string.not_connected)
+                )
+            }
+        }
     }
 
+    private fun observeState() {
+        dashboardViewModel.receivedText.observe(
+            viewLifecycleOwner
+        ) { receivedText ->
+            if (isGetButtonClicked) {
+                isGetButtonClicked = false
+                receivedText?.let {
+                    binding.textViewRid.text = receivedText.trim()
+                }
+            }
+        }
+    }
 
     private fun showDataStatus(status: DetailActivity.Status, statusMsg: String = "") {
         binding.dataSentStatusTextView.visibility = View.VISIBLE
