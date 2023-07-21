@@ -1,5 +1,6 @@
 package com.sasy.nontag.ui
 
+import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.content.ComponentName
 import android.content.Context
@@ -10,6 +11,7 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -32,10 +34,13 @@ import com.sasy.nontag.ui.fragments.TagListFragment
 import com.sasy.nontag.ui.fragments.VelocityFragment
 import com.sasy.nontag.utils.AppUtils
 import com.sasy.nontag.utils.Constants
+import com.sasy.nontag.utils.alert
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothState
 import com.sasy.nontag.utils.bluetooth_utils.SerialListener
 import com.sasy.nontag.utils.bluetooth_utils.SerialService
 import com.sasy.nontag.utils.bluetooth_utils.SerialSocket
+import com.sasy.nontag.utils.negativeButton
+import com.sasy.nontag.utils.positiveButton
 import com.sasy.nontag.utils.replaceFragment
 import com.sasy.nontag.utils.setTextColorRes
 import java.util.ArrayDeque
@@ -76,7 +81,7 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
             this,
             Context.BIND_AUTO_CREATE
         )
-        setMenuRecyclerView()
+        setUserMenuRecyclerView()
         setupToolbar()
     }
 
@@ -173,7 +178,7 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
     override fun onSerialConnectError(e: Exception) {
         status("connection failed: " + e.message)
 //        dashboardViewModel.setBluetoothState(BluetoothState.Error("Connection failed: " + e?.message))
-        dashboardViewModel.setBluetoothState(BluetoothState.Error("Connection failed" ))
+        dashboardViewModel.setBluetoothState(BluetoothState.Error("Connection failed"))
         disconnect()
     }
 
@@ -269,10 +274,103 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
         binding.toolbar.backArrowImage.setOnClickListener {
             onBackPressed()
         }
+        binding.toolbar.txtUserAccount.text = getString(R.string.user)
+        binding.toolbar.adminImage.setOnClickListener {
+            if (dashboardViewModel.isAdminLoggedIn.value == true) {
+                alert {
+                    setTitle(getString(R.string.information))
+                    setMessage(getString(R.string.admin_switch_msg))
+                    positiveButton(getString(R.string.ok)) {
+                        setupUserAccount()
+                    }
+                    negativeButton(getString(R.string.cancel)) {
+
+                    }
+                }
+            } else {
+                val intent = Intent(this, AppPinCodeActivity::class.java)
+                intent.putExtra(Constants.IS_FROM_DETAIL_SCREEN, true)
+                getResult.launch(intent)
+            }
+        }
     }
+
+    private fun setupAdminAccount() {
+        dashboardViewModel.setIsAdminLoggedIn(true)
+        binding.toolbar.txtUserAccount.text = getString(R.string.admin)
+        setMenuRecyclerView()
+    }
+
+    private fun setupUserAccount() {
+        binding.toolbar.txtUserAccount.text = getString(R.string.user)
+        dashboardViewModel.setIsAdminLoggedIn(false)
+        setUserMenuRecyclerView()
+    }
+
+
+    override fun onBackPressed() {
+        if (dashboardViewModel.isAdminLoggedIn.value == true) {
+            alert {
+                setTitle(getString(R.string.information))
+                setMessage(getString(R.string.admin_logout_msg))
+                positiveButton(getString(R.string.ok)) {
+                    finish()
+                }
+                negativeButton(getString(R.string.cancel)) {
+
+                }
+            }
+        } else {
+            finish()
+        }
+    }
+
+    private val getResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                val value = it.data?.getStringExtra(Constants.SELECTED_PIN)
+                if (value == Constants.ADMIN_PIN) {
+                    setupAdminAccount()
+                }
+            }
+        }
+
 
     private fun setToolbarTitle(toolbarTitle: String) {
         binding.toolbar.txtDashboardTitle.text = toolbarTitle
+    }
+
+    private fun setUserMenuRecyclerView() {
+        val menuList =
+            AppUtils.getMenuList(AppUtils.getArrayListFromJson(this, R.raw.user_menu_item))
+        binding.recyclerviewDetails.layoutManager = GridLayoutManager(this, 2)
+        binding.recyclerviewDetails.setHasFixedSize(true)
+        setToolbarTitle(getString(R.string.device_id))
+        replaceFragment(RidFragment())
+        observeState()
+        val mAdapter = MenuAdapter(this, menuList) { _, item ->
+            setToolbarTitle(item.name)
+            when (item.id) {
+                1 -> {
+                    replaceFragment(RidFragment())
+                }
+
+                2 -> {
+                    replaceFragment(DevInfoFragment())
+                }
+
+                3 -> {
+                    replaceFragment(RangesFragment())
+                }
+
+                4 -> {
+                    replaceFragment(DeadBandFragment())
+                }
+            }
+        }
+        binding.recyclerviewDetails.adapter = mAdapter
     }
 
     private fun setMenuRecyclerView() {

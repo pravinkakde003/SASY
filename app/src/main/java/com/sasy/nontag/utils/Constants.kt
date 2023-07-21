@@ -57,4 +57,9 @@ object Constants {
     const val BLE_RIGHT_CAMERA_ENABLE_DISABLE = "SET CRIGHT"
 
     const val DEVICE_INFO = "GET SYSPARAM"
+
+    const val USER_PIN = "5632"
+    const val ADMIN_PIN = "1234"
+    const val IS_FROM_DETAIL_SCREEN = "is_from_detail_screen"
+    const val SELECTED_PIN = "selected_pin"
 }

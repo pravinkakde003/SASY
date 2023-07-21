@@ -5,7 +5,7 @@ import android.content.DialogInterface
 import androidx.annotation.StyleRes
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-fun Context.  alert(
+fun Context.alert(
     @StyleRes style: Int = 0,
     dialogBuilder: MaterialAlertDialogBuilder.() -> Unit
 ) {

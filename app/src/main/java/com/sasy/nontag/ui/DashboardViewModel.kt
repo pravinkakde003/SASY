@@ -28,6 +28,14 @@ class DashboardViewModel : ViewModel() {
     private val _receivedText = MutableLiveData<String?>()
     val receivedText: LiveData<String?> get() = _receivedText
 
+    private var _isAdminLoggedIn = MutableLiveData(false)
+    val isAdminLoggedIn: LiveData<Boolean> get() = _isAdminLoggedIn
+
+    fun setIsAdminLoggedIn(isAdminLoggedIn: Boolean) {
+        _isAdminLoggedIn.value = isAdminLoggedIn
+    }
+
+
     fun setReceivedText(receivedText: String) {
         _receivedText.value = receivedText
     }
