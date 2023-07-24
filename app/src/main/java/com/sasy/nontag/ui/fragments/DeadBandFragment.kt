@@ -16,6 +16,8 @@ import com.sasy.nontag.utils.Constants
 class DeadBandFragment : Fragment() {
     private lateinit var binding: FragmentDeadbandBinding
     private val dashboardViewModel: DashboardViewModel by activityViewModels()
+    private var isGetButtonClicked: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentDeadbandBinding.inflate(layoutInflater)
@@ -31,6 +33,9 @@ class DeadBandFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeState()
+        dashboardViewModel.resetReceivedText()
+
         binding.buttonSetDb.setOnClickListener {
             val currentValue = binding.buttonIncrementDecrement.getCurrentNumber()
             if (currentValue > 0) {
@@ -48,6 +53,21 @@ class DeadBandFragment : Fragment() {
                 showDataStatus(
                     DetailActivity.Status.Error,
                     getString(R.string.please_enter_range_value)
+                )
+            }
+        }
+
+        binding.buttonGetDeadBand.setOnClickListener {
+            if (dashboardViewModel.isConnected()) {
+                isGetButtonClicked = true
+                (activity as DetailActivity).send("${Constants.GET_XDB}${Constants.CARRIAGE}")
+                showDataStatus(
+                    DetailActivity.Status.Success
+                )
+            } else {
+                showDataStatus(
+                    DetailActivity.Status.Error,
+                    getString(R.string.not_connected)
                 )
             }
         }
@@ -70,5 +90,19 @@ class DeadBandFragment : Fragment() {
         binding.dataSentStatusTextView.postDelayed({
             binding.dataSentStatusTextView.visibility = View.GONE
         }, Constants.TOAST_DELAY)
+    }
+
+    private fun observeState() {
+        dashboardViewModel.receivedText.observe(
+            viewLifecycleOwner
+        ) { receivedText ->
+            if (isGetButtonClicked) {
+                isGetButtonClicked = false
+                receivedText?.let {
+                    val outputString = receivedText.replace("{0D}{0A}", "")
+                    binding.textViewGetDeadBand.text = outputString.trim()
+                }
+            }
+        }
     }
 }

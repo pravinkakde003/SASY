@@ -33,6 +33,7 @@ object Constants {
     const val GET_BLESIG = "GET BLESIG"
 
     const val SET_XDB = "SET XDB"
+    const val GET_XDB = "GET XDB"
     const val SET_RID = "SET RID"
     const val GET_RID = "GET RID"
     const val SET_RTC = "SET RTC"

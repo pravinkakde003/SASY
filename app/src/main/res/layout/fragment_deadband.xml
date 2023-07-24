@@ -27,17 +27,15 @@
 
         <com.sasy.nontag.utils.IncreaseDecreaseButton
             android:id="@+id/buttonIncrementDecrement"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="92dp"
             app:activeIconColor="@color/black"
             app:initNumber="0"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewGetDeadBand"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewToolTip"
             app:maxNumber="99999"
-            app:minNumber="0"
-            app:stepSize="10" />
+            app:minNumber="0" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSetDb"
@@ -51,6 +49,32 @@
             app:layout_constraintStart_toStartOf="@id/buttonIncrementDecrement"
             app:layout_constraintTop_toBottomOf="@id/buttonIncrementDecrement" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewGetDeadBand"
+            style="@style/AppTextViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/border_gray"
+            android:gravity="center_horizontal"
+            android:paddingVertical="14dp"
+            android:text="-"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/buttonIncrementDecrement"
+            app:layout_constraintTop_toTopOf="@+id/buttonIncrementDecrement" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonGetDeadBand"
+            style="@style/PrimaryColoredButton"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@string/get"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/textViewGetDeadBand"
+            app:layout_constraintStart_toStartOf="@id/textViewGetDeadBand"
+            app:layout_constraintTop_toTopOf="@+id/buttonSetDb" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textview.MaterialTextView
