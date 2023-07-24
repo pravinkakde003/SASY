@@ -98,7 +98,8 @@ class RangesFragment : Fragment() {
             if (isGetButtonClicked) {
                 isGetButtonClicked = false
                 receivedText?.let {
-                    binding.textViewGetRange.text = receivedText.trim()
+                    val outputString = receivedText.replace("{0D}{0A}", "")
+                    binding.textViewGetRange.text = outputString.trim()
                 }
             }
         }

@@ -90,7 +90,8 @@ class RidFragment : Fragment() {
             if (isGetButtonClicked) {
                 isGetButtonClicked = false
                 receivedText?.let {
-                    binding.textViewRid.text = receivedText.trim()
+                    val outputString = receivedText.replace("{0D}{0A}", "")
+                    binding.textViewRid.text = outputString.trim()
                 }
             }
         }

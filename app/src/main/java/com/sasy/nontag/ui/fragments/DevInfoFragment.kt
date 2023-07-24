@@ -98,19 +98,6 @@ class DevInfoFragment : Fragment() {
         binding.devInfoRecyclerView.setHasFixedSize(true)
         val mAdapter = DevInfoAdapter(requireActivity(), mArrayList)
         binding.devInfoRecyclerView.adapter = mAdapter
-//        val linearSmoothScroller: LinearSmoothScroller =
-//            object : LinearSmoothScroller(requireContext()) {
-//                override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float {
-//                    return 1000f / displayMetrics.densityDpi
-//                }
-//            }
-//        linearSmoothScroller.targetPosition = mAdapter.itemCount - 1
-//        layoutManager.startSmoothScroll(linearSmoothScroller)
-//
-//        GlobalScope.launch(Dispatchers.Main) {
-//            delay(1500)
-//            binding.devInfoRecyclerView.smoothScrollToPosition(0)
-//        }
     }
 
     private fun showDataStatus(status: DetailActivity.Status, statusMsg: String = "") {

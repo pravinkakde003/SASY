@@ -79,7 +79,8 @@ class VelocityFragment : Fragment() {
             if (isGetButtonClicked) {
                 isGetButtonClicked = false
                 receivedText?.let {
-                    binding.textViewVelocity.text = receivedText.trim()
+                    val outputString = receivedText.replace("{0D}{0A}", "")
+                    binding.textViewVelocity.text = outputString.trim()
                 }
             }
         }

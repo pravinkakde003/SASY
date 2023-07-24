@@ -272,7 +272,7 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener {
         if (newScannedDeviceList.isNotEmpty()) {
             dashboardViewModel.scannedDeviceList.add(
                 DeviceListDataModel(
-                    getString(R.string.avaialbe_device_title),
+                    getString(R.string.available_device_title),
                     newScannedDeviceList
                 )
             )

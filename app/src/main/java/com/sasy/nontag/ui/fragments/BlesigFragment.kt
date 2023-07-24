@@ -41,7 +41,8 @@ class BlesigFragment : Fragment() {
             if (isGetButtonClicked) {
                 isGetButtonClicked = false
                 receivedText?.let {
-                    binding.textViewGetBlesig.text = receivedText.trim()
+                    val outputString = receivedText.replace("{0D}{0A}", "")
+                    binding.textViewGetBlesig.text = outputString.trim()
                 }
             }
         }
@@ -152,39 +153,39 @@ class BlesigFragment : Fragment() {
     fun getEquivalentBlesigValue(selectedValue: String): String {
         when (selectedValue) {
             "AC" -> {
-                return "84"
+                return "-84"
             }
 
             "AB" -> {
-                return "85"
+                return "-85"
             }
 
             "AA" -> {
-                return "86"
+                return "-86"
             }
 
             "A9" -> {
-                return "87"
+                return "-87"
             }
 
             "A8" -> {
-                return "88"
+                return "-88"
             }
 
             "A7" -> {
-                return "89"
+                return "-89"
             }
 
             "A6" -> {
-                return "90"
+                return "-90"
             }
 
             "A5" -> {
-                return "91"
+                return "-91"
             }
 
             "A4" -> {
-                return "92"
+                return "-92"
             }
         }
         return ""
