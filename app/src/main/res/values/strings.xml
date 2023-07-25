@@ -17,7 +17,7 @@
     <string name="simplepinlock_enter_pin2">Re enter PIN</string>
     <string name="simplepinlock_invalid_pin">Invalid PIN. Try again</string>
     <string name="simplepinlock_pin_mismatch">PIN mismatch. Try again</string>
-    <string name="already_paired">Already paired</string>
+    <string name="already_paired">Paired devices</string>
     <string name="back">Back</string>
     <string name="ranges">Range</string>
     <string name="long_text">Long Range</string>
@@ -94,4 +94,6 @@
     <string name="admin_switch_msg">Would you like to switch to user account?</string>
     <string name="user">User</string>
     <string name="admin">Admin</string>
+    <string name="default_parameter">Default Parameter</string>
+    <string name="factory_default">Factory Default</string>
 </resources>
