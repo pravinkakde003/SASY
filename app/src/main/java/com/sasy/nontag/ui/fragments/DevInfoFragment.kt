@@ -84,7 +84,7 @@ class DevInfoFragment : Fragment() {
 
 
     private fun setDataRecyclerView(inputString: String) {
-        val yourArray: List<String> = inputString.split("{0A}", "{0D}")
+        val yourArray: List<String> = inputString.split("$0A", "$0D","\n")
         val filteredArray = yourArray.filter { !it.isNullOrBlank() }
         val mArrayList = arrayListOf<DevInfoModel>()
         for (item in filteredArray) {
