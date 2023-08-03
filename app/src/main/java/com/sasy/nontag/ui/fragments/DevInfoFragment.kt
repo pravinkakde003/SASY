@@ -1,6 +1,8 @@
 package com.sasy.nontag.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +24,7 @@ class DevInfoFragment : Fragment() {
     private lateinit var binding: FragmentDevInfoBinding
     private val dashboardViewModel: DashboardViewModel by activityViewModels()
     private var isGetButtonClicked: Boolean = false
+    private val appendString = StringBuilder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,17 +58,17 @@ class DevInfoFragment : Fragment() {
             }
         }
     }
-
     private fun observeState() {
         dashboardViewModel.receivedText.observe(
             viewLifecycleOwner
         ) { receivedText ->
             if (isGetButtonClicked) {
-                setViewAfterReceivedData()
-                isGetButtonClicked = false
-                receivedText?.let {
-                    setDataRecyclerView(receivedText.trim())
-                }
+                appendString.append(receivedText)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    setViewAfterReceivedData()
+                    isGetButtonClicked = false
+                    setDataRecyclerView(appendString.toString().trim())
+                }, 500)
             }
         }
     }
@@ -84,6 +87,8 @@ class DevInfoFragment : Fragment() {
 
 
     private fun setDataRecyclerView(inputString: String) {
+//        binding.devInfoRecyclerView.text = inputString
+//        binding.devInfoRecyclerView.movementMethod = ScrollingMovementMethod()
         val yourArray: List<String> = inputString.split("$0A", "$0D","\n")
         val filteredArray = yourArray.filter { !it.isNullOrBlank() }
         val mArrayList = arrayListOf<DevInfoModel>()
