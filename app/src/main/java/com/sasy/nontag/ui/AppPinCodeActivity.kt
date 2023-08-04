@@ -32,6 +32,8 @@ class AppPinCodeActivity : AppCompatActivity() {
         setContentView(binding.root)
         if (intent.hasExtra(Constants.IS_FROM_DETAIL_SCREEN)) {
             isFromDetailScreen = intent.getBooleanExtra(Constants.IS_FROM_DETAIL_SCREEN, false)
+            binding.categoryLabel.text = resources.getString(R.string.welcome_text_admin)
+            binding.categoryImage.setImageResource(R.drawable.ic_admin);
         }
         val windowInsetsController =
             ViewCompat.getWindowInsetsController(window.decorView)

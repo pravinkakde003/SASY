@@ -85,20 +85,6 @@
             </com.sasy.nontag.utils.RipplePulseRelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/paired_with_label"
-            style="@style/AppTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:gravity="center_horizontal"
-            android:text="Paired With Laptop"
-            android:textColor="@color/black"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pulseLayoutCover" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_view_details"
             style="@style/PrimaryColoredButton"
@@ -110,32 +96,62 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/paired_with_label" />
+            app:layout_constraintTop_toBottomOf="@id/pulseLayoutCover" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textAlreadyPaired"
+            style="@style/TitleTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/already_paired"
+            android:textColor="@color/increase_decrease_lib_active"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_view_details" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewAlreadyPaired"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
             android:visibility="gone"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_view_details" />
+            app:layout_constraintTop_toBottomOf="@id/textAlreadyPaired" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textAvailableDevices"
+            style="@style/TitleTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/available_device_title"
+            android:textColor="@color/increase_decrease_lib_active"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerviewAlreadyPaired" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewScannedDevices"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
             android:visibility="gone"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recyclerviewAlreadyPaired" />
+            app:layout_constraintTop_toBottomOf="@id/textAvailableDevices" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -8,6 +8,7 @@
     <string name="bluetooth_not_supported">This device is not supported bluetooth</string>
     <string name="permission_missing">App needs Bluetooth permission.</string>
     <string name="welcome_text">Welcome!\nLet\'s get started</string>
+    <string name="welcome_text_admin">Welcome Admin\nExplore more</string>
     <string name="searching_devices">Searching for devices</string>
     <string name="searching_devices_description">Make sure your phone\'s bluetooth device is unlocked</string>
     <string name="cancel">Cancel</string>
@@ -96,4 +97,6 @@
     <string name="admin">Admin</string>
     <string name="default_parameter">Default Parameter</string>
     <string name="factory_default">Factory Default</string>
+    <string name="request_rejected">Request rejected</string>
+    <string name="unpair_device">Do you want to unpair this device?</string>
 </resources>

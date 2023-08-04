@@ -26,12 +26,12 @@
             android:gravity="start"
             android:text="@string/welcome_text"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/category_add_delete"
+            app:layout_constraintEnd_toStartOf="@+id/categoryImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/category_add_delete"
+            android:id="@+id/categoryImage"
             android:layout_width="112dp"
             android:layout_height="112dp"
             android:padding="16dp"

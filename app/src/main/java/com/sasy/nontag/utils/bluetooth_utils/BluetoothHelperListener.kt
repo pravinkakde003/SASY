@@ -26,4 +26,10 @@ interface BluetoothHelperListener {
     interface onDiscoveryStateChangedListener {
         fun onDiscoveryStateChanged(state: Int)
     }
+
+    interface bluetoothParingListner {
+        fun onPairSuccess(device: BluetoothDevice)
+        fun onPairFailed(rootCause: String)
+    }
 }
+

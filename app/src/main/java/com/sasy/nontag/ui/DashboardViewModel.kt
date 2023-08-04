@@ -3,15 +3,15 @@ package com.sasy.nontag.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sasy.nontag.model.ConnectedHistory
 import com.sasy.nontag.model.DeviceListDataModel
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothState
 
 class DashboardViewModel : ViewModel() {
     val isScanButtonShown = MutableLiveData(false)
 
-    val alreadyPairedDeviceList = ArrayList<DeviceListDataModel>()
-
-    val scannedDeviceList = ArrayList<DeviceListDataModel>()
+    val alreadyPairedDeviceList = ArrayList<ConnectedHistory>()
+    val scannedDeviceList = ArrayList<ConnectedHistory>()
 
     private var _selectedDeviceName = MutableLiveData("")
     val selectedDeviceName: LiveData<String> = _selectedDeviceName

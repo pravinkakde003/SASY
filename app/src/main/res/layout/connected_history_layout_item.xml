@@ -3,39 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true"
-    android:paddingVertical="10dp">
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dataLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toStartOf="@id/imageViewUnPair"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView_device_type"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_bluetooth_24" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_device_name"
+            style="@style/AppTextViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/imageView_device_type"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_device_address"
+            style="@style/AppTextViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/colorLightGray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/imageView_device_type"
+            app:layout_constraintTop_toBottomOf="@id/textView_device_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageView_device_type"
+        android:id="@+id/imageViewUnPair"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:tint="@color/app_primary_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_bluetooth_24" />
+        app:srcCompat="@drawable/ic_baseline_info_24" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textView_device_name"
-        style="@style/AppTextViewStyle"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="5dp"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@id/imageView_device_type"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textView_device_address"
-        style="@style/AppTextViewStyle"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="5dp"
-        android:textColor="@color/colorLightGray"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@id/imageView_device_type"
-        app:layout_constraintTop_toBottomOf="@id/textView_device_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>
