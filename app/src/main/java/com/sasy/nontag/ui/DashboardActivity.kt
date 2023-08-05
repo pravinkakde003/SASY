@@ -349,61 +349,9 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener,
 
     private fun createBond(item: ConnectedHistory) {
         selectedDeviceToBond = item
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            askPermission()
-        } else {
-            callCreateBond()
-        }
+        callCreateBond()
     }
 
-    private fun askPermission() {
-        if (ActivityCompat.checkSelfPermission(
-                this@DashboardActivity,
-                Manifest.permission.BLUETOOTH_CONNECT
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
-                    this@DashboardActivity,
-                    Manifest.permission.BLUETOOTH_CONNECT
-                )
-            ) {
-                ActivityCompat.requestPermissions(
-                    this@DashboardActivity,
-                    arrayOf(Manifest.permission.BLUETOOTH_CONNECT), 1
-                )
-            } else {
-                ActivityCompat.requestPermissions(
-                    this@DashboardActivity,
-                    arrayOf(Manifest.permission.BLUETOOTH_CONNECT), 104
-                )
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            104 -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if ((ContextCompat.checkSelfPermission(
-                            this@DashboardActivity,
-                            Manifest.permission.BLUETOOTH_CONNECT
-                        ) == PackageManager.PERMISSION_GRANTED)
-                    ) {
-                        showToast("Permission Granted")
-                        callCreateBond()
-                    }
-                } else {
-                    showToast("Permission Denied")
-                }
-                return
-            }
-        }
-    }
 
     @SuppressLint("MissingPermission")
     fun callCreateBond() {
