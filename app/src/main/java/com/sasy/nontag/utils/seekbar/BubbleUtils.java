@@ -14,13 +14,13 @@ import java.util.Properties;
 
 class BubbleUtils {
 
-    private static final String KEY_MIUI_MANE = "ro.miui.ui.version.name";
+    private static final String KEY_NAME = "com.sasy.nontag.utils.seekbar";
     private static Properties sProperties = new Properties();
-    private static Boolean miui;
+    private static Boolean seekbarUi;
 
-    static boolean isMIUI() {
-        if (miui != null) {
-            return miui;
+    static boolean isSeekbarUI() {
+        if (seekbarUi != null) {
+            return seekbarUi;
         }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
@@ -39,20 +39,20 @@ class BubbleUtils {
                     }
                 }
             }
-            miui = sProperties.containsKey(KEY_MIUI_MANE);
+            seekbarUi = sProperties.containsKey(KEY_NAME);
         } else {
             Class<?> clazz;
             try {
                 clazz = Class.forName("android.os.SystemProperties");
                 Method getMethod = clazz.getDeclaredMethod("get", String.class);
-                String name = (String) getMethod.invoke(null, KEY_MIUI_MANE);
-                miui = !TextUtils.isEmpty(name);
+                String name = (String) getMethod.invoke(null, KEY_NAME);
+                seekbarUi = !TextUtils.isEmpty(name);
             } catch (Exception e) {
-                miui = false;
+                seekbarUi = false;
             }
         }
 
-        return miui;
+        return seekbarUi;
     }
 
     static int dp2px(int dp) {

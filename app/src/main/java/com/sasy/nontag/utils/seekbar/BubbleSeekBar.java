@@ -44,13 +44,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.math.BigDecimal;
 
-
-/**
- * A beautiful and powerful Android custom seek bar, which has a bubble view with progress
- * appearing upon when seeking. Highly customizable, mostly demands has been considered.
- * <p>
- * Created by woxingxiao on 2016-10-27.
- */
 public class BubbleSeekBar extends View {
 
     static final int NONE = -1;
@@ -221,8 +214,7 @@ public class BubbleSeekBar extends View {
         mLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                 | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
-        // MIUI禁止了开发者使用TYPE_TOAST，Android 7.1.1 对TYPE_TOAST的使用更严格
-        if (BubbleUtils.isMIUI() || Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+        if (BubbleUtils.isSeekbarUI() || Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             mLayoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION;
         } else {
             mLayoutParams.type = WindowManager.LayoutParams.TYPE_TOAST;
@@ -317,7 +309,6 @@ public class BubbleSeekBar extends View {
     private void calculateRadiusOfBubble() {
         mPaint.setTextSize(mBubbleTextSize);
 
-        // 计算滑到两端气泡里文字需要显示的宽度，比较取最大值为气泡的半径
         String text;
         if (isShowProgressInFloat) {
             text = float2String(isRtl ? mMax : mMin);
@@ -377,13 +368,13 @@ public class BubbleSeekBar extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int height = mThumbRadiusOnDragging * 2; // 默认高度为拖动时thumb圆的直径
+        int height = mThumbRadiusOnDragging * 2;
         if (isShowThumbText) {
             mPaint.setTextSize(mThumbTextSize);
             mPaint.getTextBounds("j", 0, 1, mRectText); // j is the highest of all letters and numbers
-            height += mRectText.height(); // 如果显示实时进度，则原来基础上加上进度文字高度和间隔
+            height += mRectText.height();
         }
-        if (isShowSectionText && mSectionTextPosition >= TextPosition.BOTTOM_SIDES) { // 如果Section值在track之下显示，比较取较大值
+        if (isShowSectionText && mSectionTextPosition >= TextPosition.BOTTOM_SIDES) {
             mPaint.setTextSize(mSectionTextSize);
             mPaint.getTextBounds("j", 0, 1, mRectText);
             height = Math.max(height, mThumbRadiusOnDragging * 2 + mRectText.height());
@@ -475,7 +466,7 @@ public class BubbleSeekBar extends View {
         mBubbleCenterRawX = calculateCenterRawXofBubbleView();
         mBubbleCenterRawSolidY = mPoint[1] - mBubbleView.getMeasuredHeight();
         mBubbleCenterRawSolidY -= dp2px(24);
-        if (BubbleUtils.isMIUI()) {
+        if (BubbleUtils.isSeekbarUI()) {
             mBubbleCenterRawSolidY -= dp2px(4);
         }
 
@@ -908,7 +899,7 @@ public class BubbleSeekBar extends View {
 
         BigDecimal bigDecimal = BigDecimal.valueOf(mThumbCenterX);
         float x_ = bigDecimal.setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
-        boolean onSection = x_ == x; // 就在section处，不作valueAnim，优化性能
+        boolean onSection = x_ == x;
 
         AnimatorSet animatorSet = new AnimatorSet();
 
@@ -993,9 +984,6 @@ public class BubbleSeekBar extends View {
 
     /**
      * Showing the Bubble depends the way that the WindowManager adds a Toast type view to the Window.
-     * <p>
-     * 显示气泡
-     * 原理是利用WindowManager动态添加一个与Toast相同类型的BubbleView，消失时再移除
      */
     private void showBubble() {
         if (mBubbleView == null || mBubbleView.getParent() != null) {
@@ -1025,7 +1013,7 @@ public class BubbleSeekBar extends View {
         if (mBubbleView == null)
             return;
 
-        mBubbleView.setVisibility(GONE); // 防闪烁
+        mBubbleView.setVisibility(GONE);
         if (mBubbleView.getParent() != null) {
             mWindowManager.removeViewImmediate(mBubbleView);
         }
