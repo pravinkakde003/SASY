@@ -9,7 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.LinearLayout
 import com.sasy.nontag.R
-import com.sasy.nontag.ui.AppPinCodeActivity
+import com.sasy.nontag.ui.activity.AppPinCodeActivity
 import com.sasy.nontag.utils.dp2px
 import com.sasy.nontag.utils.px2dp
 

@@ -1,4 +1,4 @@
-package com.sasy.nontag.ui
+package com.sasy.nontag.ui.activity
 
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.ActivityDetailsBinding
+import com.sasy.nontag.ui.viewmodel.DashboardViewModel
 import com.sasy.nontag.ui.adapter.MenuAdapter
 import com.sasy.nontag.ui.fragments.AddDeleteTagFragment
 import com.sasy.nontag.ui.fragments.BleFragment

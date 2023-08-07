@@ -19,7 +19,7 @@ object Constants {
 
     const val INTENT_ACTION_DISCONNECT: String = "com.sasy.nontag.Disconnect"
     const val NOTIFICATION_CHANNEL: String = "com.sasy.nontag.Channel"
-    const val INTENT_CLASS_MAIN_ACTIVITY: String = "com.sasy.nontag.ui.DetailActivity"
+    const val INTENT_CLASS_MAIN_ACTIVITY: String = "com.sasy.nontag.ui.activity.DetailActivity"
 
     // values have to be unique within each app
     const val NOTIFY_MANAGER_START_FOREGROUND_SERVICE = 1001

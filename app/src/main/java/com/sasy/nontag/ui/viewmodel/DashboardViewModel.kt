@@ -1,4 +1,4 @@
-package com.sasy.nontag.ui
+package com.sasy.nontag.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

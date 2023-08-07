@@ -1,4 +1,4 @@
-package com.sasy.nontag.ui
+package com.sasy.nontag.ui.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.ActivityDashboardBinding
 import com.sasy.nontag.model.ConnectedHistory
+import com.sasy.nontag.ui.viewmodel.DashboardViewModel
 import com.sasy.nontag.ui.adapter.DeviceListAdapter
 import com.sasy.nontag.utils.*
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothConnectionReceiver

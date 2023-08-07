@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.FragmentTagListBinding
 import com.sasy.nontag.model.DevInfoModel
-import com.sasy.nontag.ui.DashboardViewModel
-import com.sasy.nontag.ui.DetailActivity
+import com.sasy.nontag.ui.viewmodel.DashboardViewModel
+import com.sasy.nontag.ui.activity.DetailActivity
 import com.sasy.nontag.ui.adapter.TagListAdapter
 import com.sasy.nontag.utils.Constants
 import com.sasy.nontag.utils.hide

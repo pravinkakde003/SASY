@@ -1,4 +1,4 @@
-package com.sasy.nontag.ui
+package com.sasy.nontag.ui.activity
 
 import android.app.Activity
 import android.content.Intent

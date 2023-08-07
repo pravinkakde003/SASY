@@ -37,7 +37,7 @@
         android:theme="@style/Theme.SASYNonTag"
         tools:targetApi="33">
         <activity
-            android:name=".ui.AppPinCodeActivity"
+            android:name=".ui.activity.AppPinCodeActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme">
@@ -53,13 +53,13 @@
         </activity>
 
         <activity
-            android:name=".ui.DashboardActivity"
+            android:name=".ui.activity.DashboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme" />
 
         <service android:name=".utils.bluetooth_utils.SerialService" />
         <activity
-            android:name=".ui.DetailActivity"
+            android:name=".ui.activity.DetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme" />
     </application>
