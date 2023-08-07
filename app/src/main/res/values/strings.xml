@@ -25,7 +25,9 @@
     <string name="short_text">Short Range</string>
     <string name="error">Error</string>
     <string name="information">Information</string>
+    <string name="important">Important</string>
     <string name="ok">OK</string>
+    <string name="enable_gps_message">Please enable location to get initiate nearby devices.</string>
     <string name="accept">Accept</string>
     <string name="no_bluetooth_support">This device does not support bluetooth</string>
     <string name="required_permissions">Required permissions</string>
@@ -99,4 +101,5 @@
     <string name="factory_default">Factory Default</string>
     <string name="request_rejected">Request rejected</string>
     <string name="unpair_device">Do you want to unpair this device?</string>
+    <string name="rational_msg">Please accept required permissions to use SASY app</string>
 </resources>

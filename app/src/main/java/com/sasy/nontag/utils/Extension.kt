@@ -6,7 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.location.LocationManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -21,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import com.sasy.nontag.R
+import pub.devrel.easypermissions.EasyPermissions
 
 inline fun <reified T : Any> T.className(): String = this::class.java.simpleName
 
@@ -211,3 +214,26 @@ fun TextView.setTextColorRes(@ColorRes colorRes: Int) {
     val color = ContextCompat.getColor(context, colorRes)
     setTextColor(color)
 }
+
+fun hasAllPermissions(context: Context) =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        EasyPermissions.hasPermissions(
+            context,
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+    } else {
+        EasyPermissions.hasPermissions(
+            context,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+    }
+
+fun Activity.isLocationEnabled(): Boolean {
+    val locationManager = getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager
+    return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+        LocationManager.NETWORK_PROVIDER
+    )
+}
+

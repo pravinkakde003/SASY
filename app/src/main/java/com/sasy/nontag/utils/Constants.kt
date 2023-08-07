@@ -5,6 +5,7 @@ import android.Manifest
 object Constants {
     const val USER_PIN = "1234"
     const val ADMIN_PIN = "2009"
+    const val REQUEST_CODE_LOCATION_PERMISSION = 1002
 
     const val TOAST_DELAY = 1000L
     val REQUIRED_PERMISSIONS = arrayOf(

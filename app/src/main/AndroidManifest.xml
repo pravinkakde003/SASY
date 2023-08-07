@@ -14,7 +14,9 @@
         android:name="android.permission.BLUETOOTH_ADMIN"
         android:maxSdkVersion="30" />
 
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation"
+        tools:targetApi="s"/>
     <!-- Needed only if your app makes the device discoverable to Bluetooth
       devices. -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />

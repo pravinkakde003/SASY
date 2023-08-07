@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings
 import android.util.Log
 import android.view.HapticFeedbackConstants
 import androidx.activity.result.contract.ActivityResultContracts
@@ -27,14 +28,17 @@ import com.sasy.nontag.model.ConnectedHistory
 import com.sasy.nontag.ui.adapter.DeviceListAdapter
 import com.sasy.nontag.ui.viewmodel.DashboardViewModel
 import com.sasy.nontag.utils.*
+import com.sasy.nontag.utils.Constants.REQUEST_CODE_LOCATION_PERMISSION
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothConnectionReceiver
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothDeviceMap
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothHelper
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothHelperListener
+import pub.devrel.easypermissions.AppSettingsDialog
+import pub.devrel.easypermissions.EasyPermissions
 
 
 class DashboardActivity : AppCompatActivity(), BluetoothHelperListener,
-    BluetoothHelperListener.bluetoothParingListner {
+    BluetoothHelperListener.bluetoothParingListner, EasyPermissions.PermissionCallbacks {
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var bluetoothHelper: BluetoothHelper
     private var requestedEnable = false
@@ -67,26 +71,75 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener,
             launchActivity<DetailActivity> { }
         }
         binding.layoutNoBluetooth.buttonInitiateScan.setOnClickListener {
-            if (this::scannedDeviceListAdapter.isInitialized) {
-                dashboardViewModel.scannedDeviceList.clear()
-                scannedDeviceListAdapter.clearData()
-                binding.textAvailableDevices.hide()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                initiateScan()
+            } else {
+                if (isLocationEnabled()) {
+                    initiateScan()
+                } else {
+                    alert {
+                        setTitle(getString(R.string.information))
+                        setMessage(getString(R.string.enable_gps_message))
+                        positiveButton(getString(R.string.ok)) {
+                            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                            startActivity(intent)
+                        }
+                    }
+                }
             }
-            bluetoothHelper.startDetectNearbyDevices()
         }
     }
 
+    private fun initiateScan() {
+        if (this::scannedDeviceListAdapter.isInitialized) {
+            dashboardViewModel.scannedDeviceList.clear()
+            scannedDeviceListAdapter.clearData()
+            binding.textAvailableDevices.hide()
+        }
+        bluetoothHelper.startDetectNearbyDevices()
+    }
+
     private fun checkPermissions() {
-        if (hasPermissions()) {
+        if (hasAllPermissions(this)) {
             initiateApplicationFlow()
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            EasyPermissions.requestPermissions(
+                this,
+                getString(R.string.rational_msg),
+                REQUEST_CODE_LOCATION_PERMISSION,
+                Manifest.permission.BLUETOOTH_SCAN,
+                Manifest.permission.BLUETOOTH_CONNECT,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                requestMultiplePermissions.launch(
-                    Constants.REQUIRED_PERMISSIONS
-                )
-            } else {
-                initiateApplicationFlow()
-            }
+            EasyPermissions.requestPermissions(
+                this,
+                getString(R.string.rational_msg),
+                REQUEST_CODE_LOCATION_PERMISSION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+        initiateApplicationFlow()
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            AppSettingsDialog.Builder(this).build().show()
+        } else {
+            checkPermissions()
         }
     }
 
@@ -105,20 +158,6 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener,
             }
         })
     }
-
-    private val requestMultiplePermissions =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            permissions.entries.forEach {
-                val granted = permissions.entries.all {
-                    it.value == true
-                }
-                if (granted) {
-                    initiateApplicationFlow()
-                } else {
-                    checkPermissions()
-                }
-            }
-        }
 
     private fun setupStatusText() {
         if (!bluetoothHelper.isBluetoothEnabled()) {
