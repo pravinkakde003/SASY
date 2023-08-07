@@ -3,8 +3,8 @@ package com.sasy.nontag.utils
 import android.Manifest
 
 object Constants {
-    const val BLUETOOTH_REQUEST_CODE = 101
-    const val PERMISSION_BLUETOOTH_REQUEST_CODE = 102
+    const val USER_PIN = "1234"
+    const val ADMIN_PIN = "2009"
 
     const val TOAST_DELAY = 1000L
     val REQUIRED_PERMISSIONS = arrayOf(
@@ -58,9 +58,6 @@ object Constants {
     const val BLE_RIGHT_CAMERA_ENABLE_DISABLE = "SET CRIGHT"
 
     const val DEVICE_INFO = "GET SYSPARAM"
-
-    const val USER_PIN = "5632"
-    const val ADMIN_PIN = "1234"
     const val IS_FROM_DETAIL_SCREEN = "is_from_detail_screen"
     const val SELECTED_PIN = "selected_pin"
 }

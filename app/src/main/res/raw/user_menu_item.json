@@ -14,5 +14,21 @@
   {
     "id": 4,
     "name": "Deadband"
+  },
+  {
+    "id": 5,
+    "name": "Time"
+  },
+  {
+    "id": 6,
+    "name": "Tag"
+  },
+  {
+    "id": 7,
+    "name": "Tag List"
+  },
+  {
+    "id": 8,
+    "name": "Velocity"
   }
 ]

@@ -8,9 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.FragmentDeadbandBinding
-import com.sasy.nontag.ui.viewmodel.DashboardViewModel
 import com.sasy.nontag.ui.activity.DetailActivity
+import com.sasy.nontag.ui.viewmodel.DashboardViewModel
 import com.sasy.nontag.utils.Constants
+import com.sasy.nontag.utils.hide
 
 
 class DeadBandFragment : Fragment() {
@@ -35,26 +36,31 @@ class DeadBandFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeState()
         dashboardViewModel.resetReceivedText()
-
-        binding.buttonSetDb.setOnClickListener {
-            val currentValue = binding.buttonIncrementDecrement.getCurrentNumber()
-            if (currentValue > 0) {
-                if (dashboardViewModel.isConnected()) {
-                    (activity as DetailActivity).send("${Constants.SET_XDB} $currentValue${Constants.CARRIAGE}")
-                    showDataStatus(
-                        DetailActivity.Status.Success
-                    )
+        if (dashboardViewModel.isAdminLoggedIn.value == true) {
+            binding.buttonSetDb.setOnClickListener {
+                val currentValue = binding.buttonIncrementDecrement.getCurrentNumber()
+                if (currentValue > 0) {
+                    if (dashboardViewModel.isConnected()) {
+                        (activity as DetailActivity).send("${Constants.SET_XDB} $currentValue${Constants.CARRIAGE}")
+                        showDataStatus(
+                            DetailActivity.Status.Success
+                        )
+                    } else {
+                        showDataStatus(
+                            DetailActivity.Status.Error
+                        )
+                    }
                 } else {
                     showDataStatus(
-                        DetailActivity.Status.Error
+                        DetailActivity.Status.Error,
+                        getString(R.string.please_enter_range_value)
                     )
                 }
-            } else {
-                showDataStatus(
-                    DetailActivity.Status.Error,
-                    getString(R.string.please_enter_range_value)
-                )
             }
+        } else {
+            binding.textViewToolTip.hide()
+            binding.buttonIncrementDecrement.hide()
+            binding.buttonSetDb.hide()
         }
 
         binding.buttonGetDeadBand.setOnClickListener {

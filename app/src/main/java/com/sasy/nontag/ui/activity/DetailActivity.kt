@@ -17,34 +17,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.ActivityDetailsBinding
-import com.sasy.nontag.ui.viewmodel.DashboardViewModel
 import com.sasy.nontag.ui.adapter.MenuAdapter
-import com.sasy.nontag.ui.fragments.AddDeleteTagFragment
-import com.sasy.nontag.ui.fragments.BleFragment
-import com.sasy.nontag.ui.fragments.BlesigFragment
-import com.sasy.nontag.ui.fragments.CameraFragment
-import com.sasy.nontag.ui.fragments.ClearLogFileFragment
-import com.sasy.nontag.ui.fragments.CopyFirmwareFragment
-import com.sasy.nontag.ui.fragments.DeadBandFragment
-import com.sasy.nontag.ui.fragments.DevInfoFragment
-import com.sasy.nontag.ui.fragments.RangesFragment
-import com.sasy.nontag.ui.fragments.RidFragment
-import com.sasy.nontag.ui.fragments.SetDefaultLogFragment
-import com.sasy.nontag.ui.fragments.SyncRTFragment
-import com.sasy.nontag.ui.fragments.TagListFragment
-import com.sasy.nontag.ui.fragments.VelocityFragment
-import com.sasy.nontag.utils.AppUtils
-import com.sasy.nontag.utils.Constants
-import com.sasy.nontag.utils.alert
+import com.sasy.nontag.ui.fragments.*
+import com.sasy.nontag.ui.viewmodel.DashboardViewModel
+import com.sasy.nontag.utils.*
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothState
 import com.sasy.nontag.utils.bluetooth_utils.SerialListener
 import com.sasy.nontag.utils.bluetooth_utils.SerialService
 import com.sasy.nontag.utils.bluetooth_utils.SerialSocket
-import com.sasy.nontag.utils.negativeButton
-import com.sasy.nontag.utils.positiveButton
-import com.sasy.nontag.utils.replaceFragment
-import com.sasy.nontag.utils.setTextColorRes
-import java.util.ArrayDeque
+import java.util.*
 
 
 class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
@@ -357,17 +338,26 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
                 1 -> {
                     replaceFragment(RidFragment())
                 }
-
                 2 -> {
                     replaceFragment(DevInfoFragment())
                 }
-
                 3 -> {
                     replaceFragment(RangesFragment())
                 }
-
                 4 -> {
                     replaceFragment(DeadBandFragment())
+                }
+                5 -> {
+                    replaceFragment(SyncRTFragment())
+                }
+                6 -> {
+                    replaceFragment(AddDeleteTagFragment())
+                }
+                7 -> {
+                    replaceFragment(TagListFragment())
+                }
+                8 -> {
+                    replaceFragment(VelocityFragment())
                 }
             }
         }

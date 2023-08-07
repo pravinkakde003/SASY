@@ -8,9 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.FragmentRidBinding
-import com.sasy.nontag.ui.viewmodel.DashboardViewModel
 import com.sasy.nontag.ui.activity.DetailActivity
+import com.sasy.nontag.ui.viewmodel.DashboardViewModel
 import com.sasy.nontag.utils.Constants
+import com.sasy.nontag.utils.hide
 import com.sasy.nontag.utils.hideKeyBoard
 
 
@@ -36,36 +37,42 @@ class RidFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeState()
         dashboardViewModel.resetReceivedText()
-        binding.buttonSetRid.setOnClickListener {
-            val currentValue = binding.editTextRid.text
-            currentValue?.let {
-                if (currentValue.isNotEmpty()) {
-                    if (currentValue.length >= 10) {
-                        if (dashboardViewModel.isConnected()) {
-                            requireActivity().hideKeyBoard()
-                            (activity as DetailActivity).send("${Constants.SET_RID} $currentValue${Constants.CARRIAGE}")
-                            showDataStatus(
-                                DetailActivity.Status.Success
-                            )
+        if (dashboardViewModel.isAdminLoggedIn.value == true) {
+            binding.buttonSetRid.setOnClickListener {
+                val currentValue = binding.editTextRid.text
+                currentValue?.let {
+                    if (currentValue.isNotEmpty()) {
+                        if (currentValue.length >= 10) {
+                            if (dashboardViewModel.isConnected()) {
+                                requireActivity().hideKeyBoard()
+                                (activity as DetailActivity).send("${Constants.SET_RID} $currentValue${Constants.CARRIAGE}")
+                                showDataStatus(
+                                    DetailActivity.Status.Success
+                                )
+                            } else {
+                                showDataStatus(
+                                    DetailActivity.Status.Error
+                                )
+                            }
                         } else {
                             showDataStatus(
-                                DetailActivity.Status.Error
+                                DetailActivity.Status.Error,
+                                getString(R.string.please_enter_rid_value)
                             )
                         }
                     } else {
                         showDataStatus(
                             DetailActivity.Status.Error,
-                            getString(R.string.please_enter_rid_value)
+                            getString(R.string.rid_value_length_error)
                         )
                     }
-                } else {
-                    showDataStatus(
-                        DetailActivity.Status.Error,
-                        getString(R.string.rid_value_length_error)
-                    )
                 }
             }
+        } else {
+            binding.editTextRid.hide()
+            binding.buttonSetRid.hide()
         }
+
 
         binding.buttonGetRid.setOnClickListener {
             if (dashboardViewModel.isConnected()) {
