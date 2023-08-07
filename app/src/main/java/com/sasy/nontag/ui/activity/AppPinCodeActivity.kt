@@ -12,14 +12,12 @@ import com.sasy.nontag.R
 import com.sasy.nontag.databinding.ActivityAppPincodeBinding
 import com.sasy.nontag.utils.Constants
 import com.sasy.nontag.utils.dp2px
-import com.sasy.nontag.utils.launchAndClearStackActivity
 import com.sasy.nontag.utils.pinlock.PinButtonAdapter
 import com.sasy.nontag.utils.showToast
 
 class AppPinCodeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAppPincodeBinding
     private var pin = ""
-    private var isFromDetailScreen = false
 
     companion object {
         val CANCELLED = 1001
@@ -30,11 +28,6 @@ class AppPinCodeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_app_pincode)
         binding = ActivityAppPincodeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (intent.hasExtra(Constants.IS_FROM_DETAIL_SCREEN)) {
-            isFromDetailScreen = intent.getBooleanExtra(Constants.IS_FROM_DETAIL_SCREEN, false)
-            binding.categoryLabel.text = resources.getString(R.string.welcome_text_admin)
-            binding.categoryImage.setImageResource(R.drawable.ic_admin);
-        }
         val windowInsetsController =
             ViewCompat.getWindowInsetsController(window.decorView)
 
@@ -83,21 +76,14 @@ class AppPinCodeActivity : AppCompatActivity() {
     }
 
     private fun onPinInputFinished() {
-        if (isFromDetailScreen) {
-            if (getPin() == Constants.ADMIN_PIN) {
-                val resultIntent = Intent()
-                resultIntent.putExtra(Constants.SELECTED_PIN, getPin())
-                setResult(Activity.RESULT_OK, resultIntent)
-                finish()
-            } else {
-                showToast(getString(R.string.please_enter_valid_admin_pin))
-            }
+        if (getPin() == Constants.ADMIN_PIN || getPin() == Constants.USER_PIN) {
+            val resultIntent = Intent()
+            resultIntent.putExtra(Constants.SELECTED_PIN, getPin())
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
         } else {
-            if (getPin() == Constants.USER_PIN) {
-                launchAndClearStackActivity<DashboardActivity> {}
-            } else {
-                showToast(getString(R.string.please_enter_valid_user_pin))
-            }
+            showToast(getString(R.string.please_enter_valid_pin))
+            clearPin()
         }
     }
 
@@ -126,6 +112,7 @@ class AppPinCodeActivity : AppCompatActivity() {
     private fun onCancelButtonPressed(): Boolean {
         setResult(CANCELLED)
         finish()
+        overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out)
         return true
     }
 

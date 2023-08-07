@@ -37,7 +37,7 @@
         android:theme="@style/Theme.SASYNonTag"
         tools:targetApi="33">
         <activity
-            android:name=".ui.activity.AppPinCodeActivity"
+            android:name=".ui.activity.DashboardActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme">
@@ -53,7 +53,7 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.DashboardActivity"
+            android:name=".ui.activity.AppPinCodeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme" />
 

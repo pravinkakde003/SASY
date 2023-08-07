@@ -1,6 +1,5 @@
 package com.sasy.nontag.ui.activity
 
-import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.content.ComponentName
 import android.content.Context
@@ -11,7 +10,6 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -57,13 +55,20 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
                 ?.let { deviceAddress -> dashboardViewModel.setSelectedDeviceAddress(deviceAddress) }
             intent.getStringExtra(Constants.SELECTED_DEVICE_ICON_TYPE)
                 ?.let { deviceIcon -> dashboardViewModel.setSelectedDeviceIcon(deviceIcon) }
+            intent.getStringExtra(Constants.USER_TYPE)
+                ?.let { userType ->
+                    if (userType == Constants.ADMIN) {
+                        setupAdminAccount()
+                    } else if (userType == Constants.USER) {
+                        setupUserAccount()
+                    }
+                }
         }
         bindService(
             Intent(this, SerialService::class.java),
             this,
             Context.BIND_AUTO_CREATE
         )
-        setUserMenuRecyclerView()
         setupToolbar()
     }
 
@@ -256,31 +261,12 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
         binding.toolbar.backArrowImage.setOnClickListener {
             onBackPressed()
         }
-        binding.toolbar.txtUserAccount.text = getString(R.string.user)
-        binding.toolbar.adminImage.setOnClickListener {
-            if (dashboardViewModel.isAdminLoggedIn.value == true) {
-                alert {
-                    setTitle(getString(R.string.information))
-                    setMessage(getString(R.string.admin_switch_msg))
-                    positiveButton(getString(R.string.ok)) {
-                        setupUserAccount()
-                    }
-                    negativeButton(getString(R.string.cancel)) {
-
-                    }
-                }
-            } else {
-                val intent = Intent(this, AppPinCodeActivity::class.java)
-                intent.putExtra(Constants.IS_FROM_DETAIL_SCREEN, true)
-                getResult.launch(intent)
-            }
-        }
     }
 
     private fun setupAdminAccount() {
         dashboardViewModel.setIsAdminLoggedIn(true)
         binding.toolbar.txtUserAccount.text = getString(R.string.admin)
-        setMenuRecyclerView()
+        setAdminMenuRecyclerView()
     }
 
     private fun setupUserAccount() {
@@ -306,19 +292,6 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
             finish()
         }
     }
-
-    private val getResult =
-        registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) {
-            if (it.resultCode == Activity.RESULT_OK) {
-                val value = it.data?.getStringExtra(Constants.SELECTED_PIN)
-                if (value == Constants.ADMIN_PIN) {
-                    setupAdminAccount()
-                }
-            }
-        }
-
 
     private fun setToolbarTitle(toolbarTitle: String) {
         binding.toolbar.txtDashboardTitle.text = toolbarTitle
@@ -364,7 +337,7 @@ class DetailActivity : AppCompatActivity(), ServiceConnection, SerialListener {
         binding.recyclerviewDetails.adapter = mAdapter
     }
 
-    private fun setMenuRecyclerView() {
+    private fun setAdminMenuRecyclerView() {
         val menuList =
             AppUtils.getMenuList(AppUtils.getArrayListFromJson(this, R.raw.menu_item))
         binding.recyclerviewDetails.layoutManager = GridLayoutManager(this, 2)

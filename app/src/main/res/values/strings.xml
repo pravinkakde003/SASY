@@ -88,7 +88,7 @@
     <string name="device_id">Device ID</string>
     <string name="tag_list">Tag List</string>
     <string name="get_tag_list">Get tag list</string>
-    <string name="please_enter_valid_user_pin">Please enter valid user pin.</string>
+    <string name="please_enter_valid_pin">Please enter valid pin.</string>
     <string name="please_enter_valid_admin_pin">Please enter valid admin pin.</string>
     <string name="admin_login">Admin Login</string>
     <string name="admin_logout_msg">This will logout admin account.Are you sure?</string>

@@ -24,8 +24,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sasy.nontag.R
 import com.sasy.nontag.databinding.ActivityDashboardBinding
 import com.sasy.nontag.model.ConnectedHistory
-import com.sasy.nontag.ui.viewmodel.DashboardViewModel
 import com.sasy.nontag.ui.adapter.DeviceListAdapter
+import com.sasy.nontag.ui.viewmodel.DashboardViewModel
 import com.sasy.nontag.utils.*
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothConnectionReceiver
 import com.sasy.nontag.utils.bluetooth_utils.BluetoothDeviceMap
@@ -44,6 +44,8 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener,
 
     private lateinit var scannedDeviceListAdapter: DeviceListAdapter
     private lateinit var pairedListAdapter: DeviceListAdapter
+
+    lateinit var selectedPairedDevice: ConnectedHistory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -220,13 +222,10 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener,
                         }
                     }
                 } else {
-                    dashboardViewModel.setSelectedDeviceName(item.deviceName)
-                    dashboardViewModel.setSelectedDeviceAddress(item.device_id)
-                    launchActivity<DetailActivity> {
-                        putExtra(Constants.SELECTED_DEVICE_NAME_KEY, item.deviceName)
-                        putExtra(Constants.SELECTED_DEVICE_ADDRESS_KEY, item.device_id)
-                        putExtra(Constants.SELECTED_DEVICE_ICON_TYPE, item.imageIcon)
-                    }
+                    selectedPairedDevice = item
+                    val intent = Intent(this, AppPinCodeActivity::class.java)
+                    getResult.launch(intent)
+                    overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
                 }
             }
             binding.recyclerviewAlreadyPaired.adapter = pairedListAdapter
@@ -235,6 +234,33 @@ class DashboardActivity : AppCompatActivity(), BluetoothHelperListener,
         } else {
             binding.textAlreadyPaired.hide()
             showToast(getString(R.string.no_paired_device_found))
+        }
+    }
+
+    private val getResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                when (it.data?.getStringExtra(Constants.SELECTED_PIN)) {
+                    Constants.ADMIN_PIN -> {
+                        navigateToDetailsScreen(Constants.ADMIN)
+                    }
+                    Constants.USER_PIN -> {
+                        navigateToDetailsScreen(Constants.USER)
+                    }
+                }
+            }
+        }
+
+    private fun navigateToDetailsScreen(userType: String) {
+        dashboardViewModel.setSelectedDeviceName(selectedPairedDevice.deviceName)
+        dashboardViewModel.setSelectedDeviceAddress(selectedPairedDevice.device_id)
+        launchActivity<DetailActivity> {
+            putExtra(Constants.SELECTED_DEVICE_NAME_KEY, selectedPairedDevice.deviceName)
+            putExtra(Constants.SELECTED_DEVICE_ADDRESS_KEY, selectedPairedDevice.device_id)
+            putExtra(Constants.SELECTED_DEVICE_ICON_TYPE, selectedPairedDevice.imageIcon)
+            putExtra(Constants.USER_TYPE, userType)
         }
     }
 

@@ -16,6 +16,9 @@ object Constants {
     const val SELECTED_DEVICE_NAME_KEY = "selected_device_name"
     const val SELECTED_DEVICE_ADDRESS_KEY = "selected_device_address"
     const val SELECTED_DEVICE_ICON_TYPE = "selected_device_icon"
+    const val USER_TYPE = "user_type"
+    const val ADMIN = "admin"
+    const val USER = "user"
 
     const val INTENT_ACTION_DISCONNECT: String = "com.sasy.nontag.Disconnect"
     const val NOTIFICATION_CHANNEL: String = "com.sasy.nontag.Channel"
@@ -58,6 +61,5 @@ object Constants {
     const val BLE_RIGHT_CAMERA_ENABLE_DISABLE = "SET CRIGHT"
 
     const val DEVICE_INFO = "GET SYSPARAM"
-    const val IS_FROM_DETAIL_SCREEN = "is_from_detail_screen"
     const val SELECTED_PIN = "selected_pin"
 }
